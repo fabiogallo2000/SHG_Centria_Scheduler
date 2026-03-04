@@ -149,6 +149,15 @@ if __name__ == '__main__':
     sim_df['Objective Function'] = obj_funct
     all_simulation_results.append(sim_df)
     
+# --- SALVATAGGIO IN EXCEL CON XLSXWRITER ---
+    output_excel_path = output_dir / "Risultati_Scheduling.xlsx"
+    
+    try:
+        # Usa xlsxwriter come motore invece di openpyxl
+        sim_df.to_excel(output_excel_path, engine='xlsxwriter', index=False)
+        print(f"\n✅ Excel creato con xlsxwriter: {output_excel_path}")
+    except Exception as e:
+        print(f"\n❌ Errore: {e}")
     # # Somma elemento-per-elemento delle potenze (se sono vettori)
     # P_ele_in_vec = (np.asarray(p_el_in_values))
 

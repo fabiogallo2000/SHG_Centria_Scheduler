@@ -26,7 +26,7 @@ class Instance_SHG():
         self.P_aux = 0.5 # Altri ausiliari esterni all'ele
 
         # Hydrogen storage params
-        self.cap_h2_max = 272.92 #kWh
+        self.cap_h2_max = 58 #kWh
         self.loh_final = param_dict.get("User inputs", {}).get("LOH_final", 0.5)
 
         self.p_ini_st_h2 = param_dict.get("Static Data", {}).get("p_ini_st_h2", None)
@@ -44,6 +44,8 @@ class Instance_SHG():
         self.time_limit = 300
         self.H2_prod_ini_perc = param_dict.get("Static Data", {}).get("H2_prod_ini_perc", 0)
         self.T_amb = param_dict.get("Static Data", {}).get("T_amb_C", 25)
+        self.Cert_Go = param_dict.get("Static Data", {}).get("Cert_Go", 0.075)
+        self.Spread = param_dict.get("Static Data", {}).get("Spread", 0.08)
 
 # ==================================== ORIZZONTE E RISOLUZIONE TEMPORALE =====================================================
         self.minutes = 5
@@ -63,9 +65,6 @@ class Instance_SHG():
         self.t_warm_up         = 5  # min
         self.min_min_ele = param_dict.get("User inputs", {}).get("min_min_ely",0)
         self.minuti_min = param_dict.get("User inputs", {}).get("minuti_min_lavoro",False)
-
-        self.Cert_Go = param_dict.get("User inputs", {}).get("Cert_Go", 0.075)
-        self.Spread = param_dict.get("User inputs", {}).get("Spread", 0.08)
         
 # =========================================== FORECAST DATA =====================================================
         def _to_vec(key, required_len):

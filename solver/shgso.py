@@ -334,7 +334,7 @@ class SHGSO():
 #============================================= VINCOLO IDROGENO PER BLENDING UNIT ========================================================================
         for t in self.hours:
             self.model.addConstr(
-                self.H2_blend[t] <= self.inst.h2_blend[t] * self.inst.HHV,
+                self.H2_blend[t] <= self.inst.h2_blend[t],
                 f"blend_limit_{t}"
             )
 
@@ -398,7 +398,7 @@ class SHGSO():
             self.model.setParam('OutputFlag', 1)
         else:
             self.model.setParam('OutputFlag', 0)
-        #self.model.setParam('LogFile', './logs/gurobi.log')
+        self.model.setParam('LogFile', './logs/gurobi.log')
         if lp_file_name:
             self.model.write(f"./logs/model_{lp_file_name}.lp")
         
@@ -414,6 +414,7 @@ class SHGSO():
         # Salva il modello matematico su file
         #self.model.write("scheduling_fc.mps")
         # exit()
+        self.model.write("modello_completo.lp")
         self.model.optimize()
         
         # if self.model.status == 3: # INFEASIBLE
@@ -445,6 +446,8 @@ class SHGSO():
             "P_el_in":      np.zeros(T),  # Elettrolizzzatore
             "P_el_in_tot":  np.zeros(T),  # Elettrolizzzatore + AUX
             "P_el_out":     np.zeros(T),  # H2 out (somma k)
+            "E_hss_ch":        np.zeros(T),
+            "E_hss_dc":        np.zeros(T),
             "E_hss":        np.zeros(T),
             "P_el_stby":   np.zeros(T),
             "y_off":          np.zeros(T),
@@ -452,7 +455,8 @@ class SHGSO():
             "y_run":          np.zeros(T),
             "y_stby":         np.zeros(T),
             "delta_el":       np.zeros(T),
-            "s_warm":         np.zeros(T)
+            "s_warm":         np.zeros(T),
+            "H2_blend":       np.zeros(T),
         }
 
         # 3. Estrazione Valori (Solo se c'è una soluzione disponibile)
@@ -472,7 +476,7 @@ class SHGSO():
                 try: self.sol["E_hss_ch"][t]    = self.E_hss_ch[t].X
                 except: pass
                 
-                try: self.sol["E_hss_dis"][t]    = self.E_hss_dc[t].X
+                try: self.sol["E_hss_dc"][t]    = self.E_hss_dc[t].X
                 except: pass
 
                 try: self.sol["P_el_in"][t]  = self.P_el_in[t].X + self.inst.P_standby * self.y_stby[t].X

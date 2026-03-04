@@ -1,0 +1,9 @@
+\ Model SHGSO_copy
+\ LP format - for model browsing. Use MPS format to capture full model detail.
+\ Signature: 0xd8241660b71cfcdd
+Minimize
+ 
+Subject To
+ HSS_charge_0: E_hss_ch[0] <= -174
+Bounds
+End

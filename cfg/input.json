@@ -4,7 +4,7 @@
     "User inputs":{
 
         "control_loh_fin": true,
-        "minuti_min_lavoro": true,
+        "minuti_min_lavoro": false,
 
         "LOH_final": 0.85,
         "min_min_ely": 120,
@@ -20,7 +20,7 @@
 
     "Forecast Data":{
         "h2_blend_smc": [
- 1.17,
+    1.17,
     1.17,
     0.79,
     0.91,
@@ -605,7 +605,7 @@
 
     "Static Data": {
 
-        "p_ini_st_h2": 140,
+        "p_ini_st_h2": 20,
 
         "H2_prod_ini_perc":0,
 
