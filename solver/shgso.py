@@ -76,6 +76,10 @@ class SHGSO():
         self.P_imp = self.model.addVars(self.hours,lb=0,ub= self.P_max,vtype= GRB.CONTINUOUS,name='P_imp')
         self.delta_P_imp = self.model.addVars(self.hours, lb= 0, ub= 1, vtype= GRB.BINARY, name='Delta_P_imp')
         
+        # P exported
+        self.P_exp = self.model.addVars(self.hours,lb=0,ub= self.P_max,vtype= GRB.CONTINUOUS,name='P_exp')
+        self.delta_P_exp = self.model.addVars(self.hours, lb= 0, ub= 1, vtype= GRB.BINARY, name='Delta_P_exp')
+        
         # P elecrolizer in
         self.P_el_in = self.model.addVars(self.hours,lb=0,ub= self.inst.P_el_max,vtype= GRB.CONTINUOUS,name='P_el_in')
 
@@ -103,12 +107,13 @@ class SHGSO():
         # ma possiamo farlo in un'unica riga ottimizzata senza loop esterni
         dt = self.inst.delta_t
         cost_imp_tot = gp.quicksum(self.inst.c_buy[t] * self.P_imp[t] for t in self.hours) * dt
+        r_exp_tot = gp.quicksum(self.inst.c_sell[t] * self.P_exp[t] for t in self.hours) * dt
         
         #Penalità per la BU
         penalty_factor = 50
         diff_bu = gp.quicksum((self.H2_blend [t] - self.inst.h2_blend [t]) * self.inst.HHV * penalty_factor for t in self.hours)
 
-        obj_funct = opex_ely_tot + cost_imp_tot  + diff_bu
+        obj_funct = opex_ely_tot + cost_imp_tot  + diff_bu - r_exp_tot
         
         self.model.setObjective(obj_funct, GRB.MINIMIZE)
 
@@ -118,7 +123,7 @@ class SHGSO():
         
         # Bilancio AC:
         self.model.addConstrs((
-            self.P_el_in [t] + (self.inst.P_aux) * self.y_prod[t] + self.inst.P_standby
+            self.P_el_in [t] + (self.inst.P_aux) * self.y_prod[t] + self.inst.P_standby + self.P_exp[t]
             == self.P_imp[t] + self.inst.P_pv [t]
             for t in self.hours),
             name="power_balance_ac"
@@ -228,6 +233,27 @@ class SHGSO():
                 self.H2_blend[t] >= self.inst.h2_blend[t],
                 f"blend_limit_{t}"
             )
+            
+#============================================= VINCOLO SCAMBIO CON LA RETE ========================================================================
+        for t in self.hours:
+            self.model.addGenConstrIndicator(
+                self.delta_P_exp[t],   # Variabile Binaria
+                0,                     # Valore della binaria (0 = False)
+                self.P_exp[t] == 0,    # Vincolo implicato
+                name=f"Ind_Exp_{t}"
+            )
+            
+            self.model.addGenConstrIndicator(
+                self.delta_P_imp[t],   # Variabile Binaria
+                0,                     # Valore della binaria (0 = False)
+                self.P_imp[t] == 0,    # Vincolo implicato
+                name=f"Ind_Imp_{t}"
+            )
+            
+            self.model.addConstr(
+                self.delta_P_exp[t] + self.delta_P_imp[t] <= 1,
+                    f"Delta_EXP_IMP_{t}"
+                    )
 
         self.model.update()
         
@@ -314,6 +340,7 @@ class SHGSO():
         self.sol = {
             # --- Totali ---
             "P_imp":        np.zeros(T),
+            "P_exp":        np.zeros(T),
             "P_el_in":      np.zeros(T),  # Elettrolizzzatore
             "P_el_in_tot":  np.zeros(T),  # Elettrolizzzatore + AUX
             "P_el_out":     np.zeros(T),  # H2 out (somma k)
@@ -335,7 +362,10 @@ class SHGSO():
                 # --- A. Variabili Continue ---
                 try: self.sol["P_imp"][t]    = self.P_imp[t].X
                 except: pass
-
+                
+                try: self.sol["P_exp"][t]    = self.P_exp[t].X
+                except: pass
+                
                 try: self.sol["P_el_in"][t]  = self.P_el_in[t].X + self.inst.P_standby
                 except: pass
                 

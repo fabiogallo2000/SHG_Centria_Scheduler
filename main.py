@@ -122,8 +122,6 @@ if __name__ == '__main__':
     S_warm = sol.get("s_warm", np.zeros((problem.inst.T_steps+1)))
     y_warm_up = sol.get("y_warm", np.zeros((problem.inst.T_steps+1)))
     y_run    = sol.get("y_run",     np.zeros((problem.inst.T_steps+1)))
-    
-    E_h2_start = inst_shg.cap_h2_max * inst_shg.p_ini_st_h2/inst_shg.p_max_st_h2
 
     base_cols = {
         "Hour": np.arange(1, problem.inst.T_steps + 2),

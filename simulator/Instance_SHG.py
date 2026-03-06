@@ -65,6 +65,8 @@ class Instance_SHG():
         self.c_buy  = _to_vec("c_buy_eur_per_kWh",  self.T_steps+1)
         self.c_buy = self.c_buy + (self.Cert_Go + self.Spread)
         
+        self.c_sell  = _to_vec("c_sell_eur_per_kWh",  self.T_steps+1)
+        
         self.P_pv = _to_vec("P_pv_kW", self.T_steps+1)
         
         self.h2_blend = _to_vec("h2_blend_smc", self.T_steps+1)

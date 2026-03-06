@@ -3112,3 +3112,87 @@ Solution count 1: 16.5912
 
 Optimal solution found (tolerance 1.00e-02)
 Best objective 1.659117563215e+01, best bound 1.658221038168e+01, gap 0.0540%
+
+Gurobi 12.0.2 (win64) logging started Fri Mar  6 11:10:53 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 5485 rows, 3468 columns and 12413 nonzeros
+Model fingerprint: 0x4267db37
+Model has 867 simple general constraints
+  578 INDICATOR, 289 PWL
+Variable types: 1445 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 1e+00]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+  GenCon coe range [1e+00, 1e+00]
+Presolve removed 5434 rows and 3429 columns
+Presolve time: 0.02s
+Presolved: 51 rows, 39 columns, 115 nonzeros
+Variable types: 18 continuous, 21 integer (21 binary)
+Found heuristic solution: objective 16.5911756
+
+Explored 0 nodes (0 simplex iterations) in 0.02 seconds (0.01 work units)
+Thread count was 12 (of 12 available processors)
+
+Solution count 1: 16.5912 
+
+Optimal solution found (tolerance 1.00e-02)
+Best objective 1.659117563215e+01, best bound 1.658221038171e+01, gap 0.0540%
+
+Gurobi 12.0.2 (win64) logging started Fri Mar  6 11:11:32 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 5485 rows, 3468 columns and 12413 nonzeros
+Model fingerprint: 0x4267db37
+Model has 867 simple general constraints
+  578 INDICATOR, 289 PWL
+Variable types: 1445 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 1e+00]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+  GenCon coe range [1e+00, 1e+00]
+Presolve removed 5434 rows and 3429 columns
+Presolve time: 0.01s
+Presolved: 51 rows, 39 columns, 115 nonzeros
+Variable types: 18 continuous, 21 integer (21 binary)
+Found heuristic solution: objective 16.5911756
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.01 work units)
+Thread count was 12 (of 12 available processors)
+
+Solution count 1: 16.5912 
+
+Optimal solution found (tolerance 1.00e-02)
+Best objective 1.659117563215e+01, best bound 1.658221038171e+01, gap 0.0540%
