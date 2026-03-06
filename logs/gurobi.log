@@ -711,3 +711,2404 @@ Solution count 3: 3.68257 3.76792 3.78655
 
 Optimal solution found (tolerance 1.00e-02)
 Best objective 3.682573301112e+00, best bound 3.662863122954e+00, gap 0.5352%
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 08:45:46 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8372 rows, 4624 columns and 19622 nonzeros
+Model fingerprint: 0xc3ce454d
+Model has 867 simple general constraints
+  578 INDICATOR, 289 PWL
+Variable types: 2023 continuous, 2601 integer (2601 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 7e-01]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 6e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+  GenCon coe range [1e+00, 1e+00]
+Presolve removed 4131 rows and 1772 columns
+Presolve time: 0.12s
+Presolved: 4241 rows, 2852 columns, 9922 nonzeros
+Variable types: 1415 continuous, 1437 integer (1437 binary)
+Found heuristic solution: objective 139.1632348
+Found heuristic solution: objective 139.1445992
+
+Root relaxation: interrupted, 936 iterations, 0.02 seconds (0.01 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0          -    0       139.14460  139.03954  0.08%     -    0s
+
+Explored 1 nodes (936 simplex iterations) in 0.19 seconds (0.12 work units)
+Thread count was 12 (of 12 available processors)
+
+Solution count 2: 139.145 139.163 
+
+Optimal solution found (tolerance 1.00e-02)
+Best objective 1.391445991953e+02, best bound 1.390395431230e+02, gap 0.0755%
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 08:46:28 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8372 rows, 4624 columns and 19622 nonzeros
+Model fingerprint: 0x2ae5cf09
+Model has 867 simple general constraints
+  578 INDICATOR, 289 PWL
+Variable types: 2023 continuous, 2601 integer (2601 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 6e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+  GenCon coe range [1e+00, 1e+00]
+Presolve removed 4131 rows and 1772 columns
+Presolve time: 0.09s
+Presolved: 4241 rows, 2852 columns, 9922 nonzeros
+Variable types: 1415 continuous, 1437 integer (1437 binary)
+Found heuristic solution: objective 33745.802968
+Found heuristic solution: objective 33745.784332
+
+Root relaxation: objective 1.491617e+04, 2248 iterations, 0.02 seconds (0.02 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 14916.1706    0  281 33745.7843 14916.1706  55.8%     -    0s
+H    0     0                    18119.948545 14916.1706  17.7%     -    0s
+H    0     0                    17552.546391 14916.1706  15.0%     -    0s
+H    0     0                    17521.060453 14916.1706  14.9%     -    0s
+H    0     0                    17521.036528 14916.1706  14.9%     -    0s
+H    0     0                    15138.913068 14916.1706  1.47%     -    0s
+H    0     0                    15138.906535 14916.1706  1.47%     -    0s
+     0     0 14916.2184    0  280 15138.9065 14916.2184  1.47%     -    0s
+H    0     0                    15138.743975 14916.2189  1.47%     -    0s
+H    0     0                    15138.719387 14916.2189  1.47%     -    0s
+     0     0 14916.2351    0  266 15138.7194 14916.2351  1.47%     -    0s
+     0     0 14916.2358    0  274 15138.7194 14916.2358  1.47%     -    0s
+     0     0 14916.2370    0  245 15138.7194 14916.2370  1.47%     -    0s
+     0     0 14916.2373    0  246 15138.7194 14916.2373  1.47%     -    0s
+H    0     0                    15081.185832 14916.2373  1.09%     -    0s
+H    0     0                    15033.877498 14916.2373  0.78%     -    0s
+H    0     0                    15033.872856 14916.2373  0.78%     -    0s
+H    0     0                    15033.872040 14916.2373  0.78%     -    0s
+
+Cutting planes:
+  Gomory: 28
+  Implied bound: 1
+  MIR: 30
+  Flow cover: 30
+
+Explored 1 nodes (3028 simplex iterations) in 0.53 seconds (0.42 work units)
+Thread count was 12 (of 12 available processors)
+
+Solution count 10: 15033.9 15081.2 15138.7 ... 18119.9
+
+Optimal solution found (tolerance 1.00e-02)
+Best objective 1.503387204028e+04, best bound 1.491623728203e+04, gap 0.7825%
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 12:13:50 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8372 rows, 4624 columns and 19622 nonzeros
+Model fingerprint: 0x19246563
+Model has 867 simple general constraints
+  578 INDICATOR, 289 PWL
+Variable types: 2023 continuous, 2601 integer (2601 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 3e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+  GenCon coe range [1e+00, 1e+00]
+Presolve removed 4099 rows and 1761 columns
+Presolve time: 0.09s
+Presolved: 4273 rows, 2863 columns, 9982 nonzeros
+Variable types: 1426 continuous, 1437 integer (1437 binary)
+Found heuristic solution: objective 33782.592067
+Found heuristic solution: objective 33782.580776
+
+Root relaxation: objective 1.481665e+04, 2322 iterations, 0.02 seconds (0.02 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 14816.6514    0  344 33782.5808 14816.6514  56.1%     -    0s
+H    0     0                    16883.315165 14816.6514  12.2%     -    0s
+H    0     0                    16883.291325 14816.6514  12.2%     -    0s
+H    0     0                    15144.245610 14816.6888  2.16%     -    0s
+H    0     0                    15144.234564 14816.6888  2.16%     -    0s
+     0     0 14816.6888    0  295 15144.2346 14816.6888  2.16%     -    0s
+H    0     0                    15144.172092 14816.6895  2.16%     -    0s
+H    0     0                    15144.164802 14816.6895  2.16%     -    0s
+     0     0 14816.7008    0  299 15144.1648 14816.7008  2.16%     -    0s
+     0     0 14816.7024    0  297 15144.1648 14816.7024  2.16%     -    0s
+H    0     0                    15098.567013 14816.7024  1.87%     -    0s
+H    0     0                    15098.563427 14816.7024  1.87%     -    0s
+     0     0 14816.7067    0  333 15098.5634 14816.7067  1.87%     -    0s
+     0     0 14816.7070    0  330 15098.5634 14816.7070  1.87%     -    0s
+H    0     0                    15054.235644 14816.7070  1.58%     -    0s
+H    0     0                    15054.235145 14816.7070  1.58%     -    0s
+H    0     0                    15054.230441 14816.7070  1.58%     -    0s
+H    0     0                    15054.230390 14816.7070  1.58%     -    0s
+     0     2 14816.7070    0  324 15054.2304 14816.7070  1.58%     -    0s
+H  193   200                    15032.638925 14816.7094  1.44%  11.4    1s
+H  195   200                    14950.175233 14816.7094  0.89%  11.4    1s
+
+Cutting planes:
+  Gomory: 47
+  MIR: 39
+  Flow cover: 44
+
+Explored 199 nodes (5792 simplex iterations) in 1.14 seconds (0.98 work units)
+Thread count was 12 (of 12 available processors)
+
+Solution count 10: 14950.2 15032.6 15054.2 ... 15144.2
+
+Optimal solution found (tolerance 1.00e-02)
+Best objective 1.495017523331e+04, best bound 1.481670942852e+04, gap 0.8927%
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 12:14:21 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8372 rows, 4624 columns and 19622 nonzeros
+Model fingerprint: 0x19246563
+Model has 867 simple general constraints
+  578 INDICATOR, 289 PWL
+Variable types: 2023 continuous, 2601 integer (2601 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 3e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+  GenCon coe range [1e+00, 1e+00]
+Presolve removed 4099 rows and 1761 columns
+Presolve time: 0.08s
+Presolved: 4273 rows, 2863 columns, 9982 nonzeros
+Variable types: 1426 continuous, 1437 integer (1437 binary)
+Found heuristic solution: objective 33782.592067
+Found heuristic solution: objective 33782.580776
+
+Root relaxation: objective 1.481665e+04, 2322 iterations, 0.02 seconds (0.02 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 14816.6514    0  344 33782.5808 14816.6514  56.1%     -    0s
+H    0     0                    16883.315165 14816.6514  12.2%     -    0s
+H    0     0                    16883.291325 14816.6514  12.2%     -    0s
+H    0     0                    15144.245610 14816.6888  2.16%     -    0s
+H    0     0                    15144.234564 14816.6888  2.16%     -    0s
+     0     0 14816.6888    0  295 15144.2346 14816.6888  2.16%     -    0s
+H    0     0                    15144.172092 14816.6895  2.16%     -    0s
+H    0     0                    15144.164802 14816.6895  2.16%     -    0s
+     0     0 14816.7008    0  299 15144.1648 14816.7008  2.16%     -    0s
+     0     0 14816.7024    0  297 15144.1648 14816.7024  2.16%     -    0s
+H    0     0                    15098.567013 14816.7024  1.87%     -    0s
+H    0     0                    15098.563427 14816.7024  1.87%     -    0s
+     0     0 14816.7067    0  333 15098.5634 14816.7067  1.87%     -    0s
+     0     0 14816.7070    0  330 15098.5634 14816.7070  1.87%     -    0s
+H    0     0                    15054.235644 14816.7070  1.58%     -    0s
+H    0     0                    15054.235145 14816.7070  1.58%     -    0s
+H    0     0                    15054.230441 14816.7070  1.58%     -    0s
+H    0     0                    15054.230390 14816.7070  1.58%     -    0s
+     0     2 14816.7070    0  324 15054.2304 14816.7070  1.58%     -    0s
+H  193   200                    15032.638925 14816.7094  1.44%  11.4    1s
+H  195   200                    14950.175233 14816.7094  0.89%  11.4    1s
+
+Cutting planes:
+  Gomory: 47
+  MIR: 39
+  Flow cover: 44
+
+Explored 199 nodes (5792 simplex iterations) in 1.14 seconds (0.98 work units)
+Thread count was 12 (of 12 available processors)
+
+Solution count 10: 14950.2 15032.6 15054.2 ... 15144.2
+
+Optimal solution found (tolerance 1.00e-02)
+Best objective 1.495017523331e+04, best bound 1.481670942852e+04, gap 0.8927%
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:00:39 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8372 rows, 4624 columns and 19622 nonzeros
+Model fingerprint: 0x0e12e896
+Model has 867 simple general constraints
+  578 INDICATOR, 289 PWL
+Variable types: 2023 continuous, 2601 integer (2601 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+  GenCon coe range [1e+00, 1e+00]
+Presolve removed 578 rows and 579 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible or unbounded
+Best objective -, best bound -, gap -
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:01:34 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8372 rows, 4624 columns and 19622 nonzeros
+Model fingerprint: 0x7a295913
+Model has 867 simple general constraints
+  578 INDICATOR, 289 PWL
+Variable types: 2023 continuous, 2601 integer (2601 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+  GenCon coe range [1e+00, 1e+00]
+Presolve removed 578 rows and 579 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible or unbounded
+Best objective -, best bound -, gap -
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:02:16 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8372 rows, 4624 columns and 19622 nonzeros
+Model fingerprint: 0x0e12e896
+Model has 867 simple general constraints
+  578 INDICATOR, 289 PWL
+Variable types: 2023 continuous, 2601 integer (2601 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+  GenCon coe range [1e+00, 1e+00]
+Presolve removed 578 rows and 579 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible or unbounded
+Best objective -, best bound -, gap -
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:04:38 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8371 rows, 4624 columns and 19621 nonzeros
+Model fingerprint: 0x221fd4f8
+Model has 867 simple general constraints
+  578 INDICATOR, 289 PWL
+Variable types: 2023 continuous, 2601 integer (2601 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+  GenCon coe range [1e+00, 1e+00]
+Presolve removed 578 rows and 579 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible or unbounded
+Best objective -, best bound -, gap -
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:05:00 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8371 rows, 4624 columns and 19621 nonzeros
+Model fingerprint: 0x7bd75d43
+Model has 867 simple general constraints
+  578 INDICATOR, 289 PWL
+Variable types: 2023 continuous, 2601 integer (2601 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+  GenCon coe range [1e+00, 1e+00]
+Presolve removed 578 rows and 579 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible or unbounded
+Best objective -, best bound -, gap -
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:05:55 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8371 rows, 4624 columns and 19621 nonzeros
+Model fingerprint: 0x7bd75d43
+Model has 867 simple general constraints
+  578 INDICATOR, 289 PWL
+Variable types: 2023 continuous, 2601 integer (2601 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+  GenCon coe range [1e+00, 1e+00]
+Presolve removed 578 rows and 579 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible or unbounded
+Best objective -, best bound -, gap -
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:08:49 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8371 rows, 4624 columns and 19621 nonzeros
+Model fingerprint: 0x265eff34
+Model has 867 simple general constraints
+  578 INDICATOR, 289 PWL
+Variable types: 2023 continuous, 2601 integer (2601 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+  GenCon coe range [1e+00, 1e+00]
+Presolve removed 578 rows and 579 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible or unbounded
+Best objective -, best bound -, gap -
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:09:12 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8371 rows, 4624 columns and 19621 nonzeros
+Model fingerprint: 0x265eff34
+Model has 867 simple general constraints
+  578 INDICATOR, 289 PWL
+Variable types: 2023 continuous, 2601 integer (2601 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+  GenCon coe range [1e+00, 1e+00]
+Presolve removed 578 rows and 579 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible or unbounded
+Best objective -, best bound -, gap -
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:10:35 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8371 rows, 4624 columns and 19621 nonzeros
+Model fingerprint: 0x265eff34
+Model has 867 simple general constraints
+  578 INDICATOR, 289 PWL
+Variable types: 2023 continuous, 2601 integer (2601 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+  GenCon coe range [1e+00, 1e+00]
+Presolve removed 578 rows and 579 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible or unbounded
+Best objective -, best bound -, gap -
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:11:25 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8371 rows, 4624 columns and 19621 nonzeros
+Model fingerprint: 0xfd9c8f74
+Model has 867 simple general constraints
+  578 INDICATOR, 289 PWL
+Variable types: 2023 continuous, 2601 integer (2601 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+  GenCon coe range [1e+00, 1e+00]
+Presolve removed 578 rows and 579 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible or unbounded
+Best objective -, best bound -, gap -
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:12:42 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8371 rows, 4624 columns and 19621 nonzeros
+Model fingerprint: 0xc837b359
+Model has 867 simple general constraints
+  578 INDICATOR, 289 PWL
+Variable types: 2023 continuous, 2601 integer (2601 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+  GenCon coe range [1e+00, 1e+00]
+Presolve removed 4364 rows and 1755 columns
+Presolve time: 0.09s
+Presolved: 4007 rows, 2869 columns, 9445 nonzeros
+Variable types: 1434 continuous, 1435 integer (1435 binary)
+Found heuristic solution: objective 33661.341702
+Found heuristic solution: objective 33661.146544
+Found heuristic solution: objective 33661.131571
+
+Root relaxation: objective 1.480105e+04, 2350 iterations, 0.01 seconds (0.01 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 14801.0536    0  539 33661.1316 14801.0536  56.0%     -    0s
+H    0     0                    22488.791847 14801.0536  34.2%     -    0s
+H    0     0                    22488.725305 14801.0536  34.2%     -    0s
+H    0     0                    22467.213084 14801.0536  34.1%     -    0s
+H    0     0                    22467.210219 14801.0536  34.1%     -    0s
+H    0     0                    22268.982971 14801.0536  33.5%     -    0s
+H    0     0                    22268.939699 14801.0536  33.5%     -    0s
+H    0     0                    20037.775922 14801.0536  26.1%     -    0s
+H    0     0                    20037.747490 14801.0536  26.1%     -    0s
+H    0     0                    19906.735949 14801.0536  25.6%     -    0s
+H    0     0                    19906.698434 14801.0536  25.6%     -    0s
+     0     0 14815.3657    0  527 19906.6984 14815.3657  25.6%     -    0s
+     0     0 14822.8822    0  524 19906.6984 14822.8822  25.5%     -    0s
+H    0     0                    18751.551991 14822.9615  21.0%     -    0s
+H    0     0                    18751.504487 14822.9615  21.0%     -    0s
+     0     0 14823.3939    0  517 18751.5045 14823.3939  20.9%     -    0s
+     0     0 14823.3941    0  523 18751.5045 14823.3941  20.9%     -    0s
+H    0     0                    16946.901346 14823.3941  12.5%     -    0s
+H    0     0                    16946.885113 14823.3941  12.5%     -    0s
+H    0     0                    16216.953766 14823.3941  8.59%     -    0s
+H    0     0                    16216.937857 14823.3941  8.59%     -    0s
+     0     0 14832.3719    0  575 16216.9379 14832.3719  8.54%     -    0s
+     0     0 14832.4656    0  580 16216.9379 14832.4656  8.54%     -    0s
+     0     0 14832.4662    0  576 16216.9379 14832.4662  8.54%     -    0s
+     0     0 14832.5578    0  598 16216.9379 14832.5578  8.54%     -    0s
+     0     0 14832.8897    0  606 16216.9379 14832.8897  8.53%     -    0s
+     0     0 14832.9044    0  607 16216.9379 14832.9044  8.53%     -    0s
+     0     0 14835.8729    0  578 16216.9379 14835.8729  8.52%     -    0s
+     0     0 14835.8736    0  576 16216.9379 14835.8736  8.52%     -    0s
+     0     0 14835.8738    0  577 16216.9379 14835.8738  8.52%     -    0s
+     0     0 14835.8740    0  577 16216.9379 14835.8740  8.52%     -    0s
+     0     0 14835.8740    0  592 16216.9379 14835.8740  8.52%     -    0s
+H    0     0                    16002.538828 14835.8740  7.29%     -    0s
+H    0     0                    16002.535308 14835.8740  7.29%     -    0s
+     0     0 14835.8740    0  592 16002.5353 14835.8740  7.29%     -    0s
+H    0     0                    15993.136662 14835.8741  7.24%     -    0s
+H    0     0                    15956.767192 14835.8741  7.02%     -    0s
+H    0     0                    15956.763672 14835.8741  7.02%     -    0s
+H    0     0                    15946.788461 14835.8741  6.97%     -    1s
+     0     2 14835.8741    0  592 15946.7885 14835.8741  6.97%     -    1s
+H   38    70                    15920.355469 14835.8765  6.81%  14.9    1s
+H   46    70                    15903.777426 14835.8765  6.71%  13.9    1s
+H   69   193                    15903.773774 14835.8765  6.71%  12.0    1s
+H  200   205                    15799.321918 14835.8765  6.10%  10.2    1s
+H  202   205                    15587.163467 14835.8765  4.82%  10.3    1s
+H  388   466                    15587.162149 14835.8765  4.82%   9.6    2s
+H  465   545                    15582.030439 14835.8765  4.79%   9.4    2s
+H  486   545                    15540.807445 14835.8765  4.54%   9.4    2s
+H  544   833                    15540.800984 14835.8765  4.54%   9.3    2s
+H 2338  2345                    15349.268794 14835.8765  3.34%   7.2    3s
+H 2342  2308                    15170.785799 14835.8765  2.21%   7.2    3s
+H 2344  2795                    15170.782750 14835.8765  2.21%   7.2    3s
+* 2579  2794             286    15164.874452 14835.8769  2.17%   7.0    3s
+* 2771  2724             305    15093.707335 14835.8780  1.71%   7.0    3s
+H 2949  2979                    15093.696734 14835.8789  1.71%   7.0    3s
+H 3297  2979                    15093.654321 14835.8789  1.71%   7.0    4s
+H 3299  2831                    15093.646872 14835.8789  1.71%   7.0    4s
+H 3306  2694                    15093.636116 14836.2379  1.71%   7.0    4s
+  3310  2697 14991.1585  235  598 15093.6361 14836.4004  1.70%   7.0    5s
+H 3321  2568                    15093.633434 14837.9563  1.69%   6.9    6s
+H 3321  2439                    15093.630386 14837.9563  1.69%   6.9    6s
+H 3322  2318                    15093.628823 14837.9574  1.69%   6.9    6s
+H 3322  2201                    15093.624117 14837.9574  1.69%   6.9    6s
+H 3323  2092                    15093.597340 14838.3004  1.69%   6.9    6s
+H 3323  1987                    15093.579803 14838.3004  1.69%   6.9    6s
+H 3323  1887                    15093.576150 14838.3004  1.69%   6.9    6s
+H 3323  1792                    15045.245931 14838.3004  1.38%   6.9    6s
+H 3323  1702                    15045.242044 14838.3004  1.38%   6.9    6s
+H 3326  1619                    15045.236979 14838.5897  1.37%   6.9    7s
+H 3326  1537                    15045.229742 14838.5897  1.37%   6.9    7s
+H 3342  1469                    15045.229673 14838.6482  1.37%   6.9    9s
+H 3342  1395                    15045.226764 14838.6482  1.37%   6.9    9s
+  3347  1399 14838.6495    8  671 15045.2268 14838.6495  1.37%   6.9   10s
+H 3355  1333                    15045.200978 14839.0367  1.37%   6.9   11s
+H 3355  1265                    15045.197615 14839.0367  1.37%   6.9   11s
+H 3371  1211                    15044.086375 14839.8547  1.36%   6.8   13s
+H 3372  1149                    15035.523679 14839.9655  1.30%   6.8   13s
+H 3372  1090                    15035.516149 14839.9655  1.30%   6.8   13s
+  3389  1103 14840.2303   18  539 15035.5161 14840.2303  1.30%   9.3   15s
+H 3404  1057                    15035.287987 14841.6237  1.29%   9.3   16s
+H 3404  1003                    14989.168016 14842.0579  0.98%   9.3   16s
+
+Cutting planes:
+  Gomory: 75
+  Implied bound: 2
+  MIR: 138
+  Flow cover: 65
+  Relax-and-lift: 1
+
+Explored 3404 nodes (40304 simplex iterations) in 17.01 seconds (11.05 work units)
+Thread count was 12 (of 12 available processors)
+
+Solution count 10: 14989.2 15035.3 15035.5 ... 15045.2
+
+Optimal solution found (tolerance 1.00e-02)
+Best objective 1.498916801556e+04, best bound 1.484205791670e+04, gap 0.9814%
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:13:53 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8082 rows, 4046 columns and 19043 nonzeros
+Model fingerprint: 0x3d9a7d22
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 578 rows and 579 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible or unbounded
+Best objective -, best bound -, gap -
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:14:08 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8082 rows, 4046 columns and 19043 nonzeros
+Model fingerprint: 0x9910ed43
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 4649 rows and 1464 columns
+Presolve time: 0.07s
+Presolved: 3433 rows, 2582 columns, 8295 nonzeros
+Variable types: 1433 continuous, 1149 integer (1149 binary)
+Found heuristic solution: objective 33756.908381
+Found heuristic solution: objective 33756.890429
+
+Root relaxation: objective 8.523412e+02, 1571 iterations, 0.02 seconds (0.01 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  852.34124    0  308 33756.8904  852.34124  97.5%     -    0s
+H    0     0                     852.5003218  852.34124  0.02%     -    0s
+
+Explored 1 nodes (2001 simplex iterations) in 0.12 seconds (0.14 work units)
+Thread count was 12 (of 12 available processors)
+
+Solution count 3: 852.5 33756.9 33756.9 
+
+Optimal solution found (tolerance 1.00e-02)
+Best objective 8.525003217807e+02, best bound 8.523412412566e+02, gap 0.0187%
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:14:46 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8082 rows, 4046 columns and 19043 nonzeros
+Model fingerprint: 0x4cccc2d2
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 1761 rows and 880 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible or unbounded
+Best objective -, best bound -, gap -
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:15:05 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8082 rows, 4046 columns and 19043 nonzeros
+Model fingerprint: 0x3c3194e9
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 578 rows and 579 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.06 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible or unbounded
+Best objective -, best bound -, gap -
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:16:17 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8082 rows, 4046 columns and 19043 nonzeros
+Model fingerprint: 0x0e435243
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 1760 rows and 879 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+
+Computing Irreducible Inconsistent Subsystem (IIS)...
+
+           Constraints          |            Bounds           |  Runtime
+      Min       Max     Guess   |   Min       Max     Guess   |
+--------------------------------------------------------------------------
+        0      8370         -         0      3179         -           0s
+       11        11        11         1         1         1           0s
+
+IIS computed: 11 constraints, 1 bounds
+IIS runtime: 0.06 seconds (0.04 work units)
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:17:23 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8082 rows, 4046 columns and 19043 nonzeros
+Model fingerprint: 0xb0525398
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 1760 rows and 880 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+
+Computing Irreducible Inconsistent Subsystem (IIS)...
+
+           Constraints          |            Bounds           |  Runtime
+      Min       Max     Guess   |   Min       Max     Guess   |
+--------------------------------------------------------------------------
+        0      8370         -         0      3757         -           0s
+Numerical troubles encountered during IIS computation
+       86        86        86         1         1         1           0s
+
+IIS computed: 86 constraints, 1 bounds
+IIS runtime: 0.20 seconds (0.05 work units)
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:18:23 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8082 rows, 4046 columns and 19043 nonzeros
+Model fingerprint: 0x1e241c38
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 1760 rows and 880 columns
+Presolve time: 0.02s
+
+Explored 0 nodes (0 simplex iterations) in 0.02 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+
+Computing Irreducible Inconsistent Subsystem (IIS)...
+
+           Constraints          |            Bounds           |  Runtime
+      Min       Max     Guess   |   Min       Max     Guess   |
+--------------------------------------------------------------------------
+        0      8370         -         0      4046         -           0s
+       16        16        16         1         1         1           0s
+
+IIS computed: 16 constraints, 1 bounds
+IIS runtime: 0.04 seconds (0.01 work units)
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:18:54 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8082 rows, 4046 columns and 19043 nonzeros
+Model fingerprint: 0x88299a06
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 4649 rows and 1464 columns
+Presolve time: 0.09s
+Presolved: 3433 rows, 2582 columns, 8295 nonzeros
+Variable types: 1433 continuous, 1149 integer (1149 binary)
+Found heuristic solution: objective 33756.908381
+Found heuristic solution: objective 33756.890429
+
+Root relaxation: objective 8.523412e+02, 1571 iterations, 0.01 seconds (0.01 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  852.34124    0  308 33756.8904  852.34124  97.5%     -    0s
+H    0     0                     852.5003218  852.34124  0.02%     -    0s
+
+Explored 1 nodes (2001 simplex iterations) in 0.15 seconds (0.14 work units)
+Thread count was 12 (of 12 available processors)
+
+Solution count 3: 852.5 33756.9 33756.9 
+
+Optimal solution found (tolerance 1.00e-02)
+Best objective 8.525003217807e+02, best bound 8.523412412566e+02, gap 0.0187%
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:20:57 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8082 rows, 4046 columns and 19043 nonzeros
+Model fingerprint: 0x1722aef2
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 1159 rows and 579 columns
+Presolve time: 0.02s
+
+Explored 0 nodes (0 simplex iterations) in 0.02 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+
+IIS computed: 1 constraints, 1 bounds
+IIS runtime: 0.00 seconds (0.00 work units)
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:21:10 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8082 rows, 4046 columns and 19043 nonzeros
+Model fingerprint: 0x88299a06
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 4649 rows and 1464 columns
+Presolve time: 0.09s
+Presolved: 3433 rows, 2582 columns, 8295 nonzeros
+Variable types: 1433 continuous, 1149 integer (1149 binary)
+Found heuristic solution: objective 33756.908381
+Found heuristic solution: objective 33756.890429
+
+Root relaxation: objective 8.523412e+02, 1571 iterations, 0.00 seconds (0.01 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  852.34124    0  308 33756.8904  852.34124  97.5%     -    0s
+H    0     0                     852.5003218  852.34124  0.02%     -    0s
+
+Explored 1 nodes (2001 simplex iterations) in 0.13 seconds (0.14 work units)
+Thread count was 12 (of 12 available processors)
+
+Solution count 3: 852.5 33756.9 33756.9 
+
+Optimal solution found (tolerance 1.00e-02)
+Best objective 8.525003217807e+02, best bound 8.523412412566e+02, gap 0.0187%
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:25:37 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8082 rows, 4046 columns and 19043 nonzeros
+Model fingerprint: 0xe565c71c
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 1760 rows and 880 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.10 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+
+Computing Irreducible Inconsistent Subsystem (IIS)...
+
+           Constraints          |            Bounds           |  Runtime
+      Min       Max     Guess   |   Min       Max     Guess   |
+--------------------------------------------------------------------------
+        0      8370         -         0      4046         -           0s
+       16        16        16         1         1         1           0s
+
+IIS computed: 16 constraints, 1 bounds
+IIS runtime: 0.04 seconds (0.01 work units)
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:25:47 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8082 rows, 4046 columns and 19043 nonzeros
+Model fingerprint: 0x1f5585bc
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 1759 rows and 880 columns
+Presolve time: 0.02s
+
+Explored 0 nodes (0 simplex iterations) in 0.02 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+
+Computing Irreducible Inconsistent Subsystem (IIS)...
+
+           Constraints          |            Bounds           |  Runtime
+      Min       Max     Guess   |   Min       Max     Guess   |
+--------------------------------------------------------------------------
+        0      8370         -         0      4046         -           0s
+Numerical troubles encountered during IIS computation
+       81        81        81         1         1         1           0s
+
+IIS computed: 81 constraints, 1 bounds
+IIS runtime: 0.17 seconds (0.04 work units)
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:28:37 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8082 rows, 4046 columns and 19043 nonzeros
+Model fingerprint: 0xbd7cc5cf
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 1762 rows and 878 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+
+Computing Irreducible Inconsistent Subsystem (IIS)...
+
+           Constraints          |            Bounds           |  Runtime
+      Min       Max     Guess   |   Min       Max     Guess   |
+--------------------------------------------------------------------------
+        0      8369         -         0      4046         -           0s
+Numerical troubles encountered during IIS computation
+       80        80        80         2         2         2           0s
+
+IIS computed: 80 constraints, 2 bounds
+IIS runtime: 0.18 seconds (0.05 work units)
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:30:13 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8082 rows, 4046 columns and 19043 nonzeros
+Model fingerprint: 0xbd7cc5cf
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 1762 rows and 878 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.22 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+
+Computing Irreducible Inconsistent Subsystem (IIS)...
+
+           Constraints          |            Bounds           |  Runtime
+      Min       Max     Guess   |   Min       Max     Guess   |
+--------------------------------------------------------------------------
+        0      8369         -         0      4046         -           0s
+Numerical troubles encountered during IIS computation
+       80        80        80         2         2         2           0s
+
+IIS computed: 80 constraints, 2 bounds
+IIS runtime: 0.19 seconds (0.05 work units)
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:33:03 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8082 rows, 4046 columns and 19043 nonzeros
+Model fingerprint: 0xf1b4bd04
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 1763 rows and 879 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+
+Computing Irreducible Inconsistent Subsystem (IIS)...
+
+           Constraints          |            Bounds           |  Runtime
+      Min       Max     Guess   |   Min       Max     Guess   |
+--------------------------------------------------------------------------
+        0      8369         -         0      4046         -           0s
+Numerical troubles encountered during IIS computation
+       86        86        86         1         1         1           0s
+
+IIS computed: 86 constraints, 1 bounds
+IIS runtime: 0.23 seconds (0.09 work units)
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:33:51 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8082 rows, 4046 columns and 19043 nonzeros
+Model fingerprint: 0x9b1b4498
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [3e-01, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 1763 rows and 879 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.02 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+
+Computing Irreducible Inconsistent Subsystem (IIS)...
+
+           Constraints          |            Bounds           |  Runtime
+      Min       Max     Guess   |   Min       Max     Guess   |
+--------------------------------------------------------------------------
+        0      8369         -         0      4046         -           0s
+Numerical troubles encountered during IIS computation
+       76        76        76         1         1         1           0s
+
+IIS computed: 76 constraints, 1 bounds
+IIS runtime: 0.15 seconds (0.04 work units)
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 16:59:28 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 7794 rows, 4046 columns and 18467 nonzeros
+Model fingerprint: 0xad0867a2
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 1738 rows and 871 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+
+Computing Irreducible Inconsistent Subsystem (IIS)...
+
+           Constraints          |            Bounds           |  Runtime
+      Min       Max     Guess   |   Min       Max     Guess   |
+--------------------------------------------------------------------------
+        0      8083         -         0      3179         -           0s
+Numerical troubles encountered during IIS computation
+       59        59        59         1         1         1           0s
+
+IIS computed: 59 constraints, 1 bounds
+IIS runtime: 0.08 seconds (0.02 work units)
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 17:05:39 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 7794 rows, 4046 columns and 18467 nonzeros
+Model fingerprint: 0x08d77a04
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 1738 rows and 871 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+
+Computing Irreducible Inconsistent Subsystem (IIS)...
+
+           Constraints          |            Bounds           |  Runtime
+      Min       Max     Guess   |   Min       Max     Guess   |
+--------------------------------------------------------------------------
+        0      8083         -         0      3179         -           0s
+Numerical troubles encountered during IIS computation
+       59        59        59         1         1         1           0s
+
+IIS computed: 59 constraints, 1 bounds
+IIS runtime: 0.10 seconds (0.02 work units)
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 17:11:25 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 7794 rows, 4046 columns and 18467 nonzeros
+Model fingerprint: 0x9959058a
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 5196 rows and 1450 columns
+Presolve time: 0.05s
+Presolved: 2598 rows, 2596 columns, 6630 nonzeros
+Variable types: 1441 continuous, 1155 integer (1155 binary)
+Found heuristic solution: objective 14.8382816
+
+Root relaxation: objective 1.175358e+01, 1004 iterations, 0.01 seconds (0.01 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   11.75358    0  111   14.83828   11.75358  20.8%     -    0s
+H    0     0                      12.6607987   11.75358  7.17%     -    0s
+H    0     0                      12.1354390   11.75358  3.15%     -    0s
+H    0     0                      12.0853706   11.75358  2.75%     -    0s
+H    0     0                      12.0058130   11.75732  2.07%     -    0s
+H    0     0                      12.0057352   11.81632  1.58%     -    0s
+     0     0   11.82149    0  104   12.00574   11.82149  1.53%     -    0s
+H    0     0                      11.9961411   11.82149  1.46%     -    0s
+H    0     0                      11.9702652   11.82149  1.24%     -    0s
+     0     0   11.82377    0  124   11.97027   11.82377  1.22%     -    0s
+H    0     0                      11.9288650   11.82377  0.88%     -    0s
+H    0     0                      11.9253722   11.82377  0.85%     -    0s
+
+Cutting planes:
+  Gomory: 15
+  Cover: 2
+  Implied bound: 18
+  Dual implied bound: 1
+  MIR: 37
+  Flow cover: 48
+  RLT: 4
+  Relax-and-lift: 1
+
+Explored 1 nodes (1812 simplex iterations) in 0.21 seconds (0.15 work units)
+Thread count was 12 (of 12 available processors)
+
+Solution count 10: 11.9254 11.9289 11.9703 ... 14.8383
+
+Optimal solution found (tolerance 1.00e-02)
+Best objective 1.192537222916e+01, best bound 1.182376887018e+01, gap 0.8520%
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 17:11:48 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 7794 rows, 4046 columns and 18467 nonzeros
+Model fingerprint: 0x327d082b
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 867 rows and 578 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+
+IIS computed: 1 constraints, 1 bounds
+IIS runtime: 0.00 seconds (0.00 work units)
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 17:13:58 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 7794 rows, 4046 columns and 18467 nonzeros
+Model fingerprint: 0x5e5d16f6
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 1739 rows and 872 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.02 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+
+Computing Irreducible Inconsistent Subsystem (IIS)...
+
+           Constraints          |            Bounds           |  Runtime
+      Min       Max     Guess   |   Min       Max     Guess   |
+--------------------------------------------------------------------------
+        0      8083         -         0      3179         -           0s
+Numerical troubles encountered during IIS computation
+        3         3         3         0         0         0           0s
+
+IIS computed: 3 constraints, 0 bounds
+IIS runtime: 0.01 seconds (0.00 work units)
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 17:15:05 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 7794 rows, 4046 columns and 18467 nonzeros
+Model fingerprint: 0x60f1368f
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 5198 rows and 1452 columns
+Presolve time: 0.04s
+Presolved: 2596 rows, 2594 columns, 6624 nonzeros
+Variable types: 1439 continuous, 1155 integer (1155 binary)
+Found heuristic solution: objective 15.6792835
+
+Root relaxation: objective 1.260805e+01, 1072 iterations, 0.01 seconds (0.01 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   12.60805    0  125   15.67928   12.60805  19.6%     -    0s
+H    0     0                      13.6257892   12.60805  7.47%     -    0s
+H    0     0                      12.9401687   12.60805  2.57%     -    0s
+     0     0   12.66138    0  119   12.94017   12.66138  2.15%     -    0s
+     0     0   12.66193    0  114   12.94017   12.66193  2.15%     -    0s
+     0     0   12.68337    0   94   12.94017   12.68337  1.98%     -    0s
+H    0     0                      12.8977500   12.68342  1.66%     -    0s
+H    0     0                      12.8719476   12.68410  1.46%     -    0s
+     0     0   12.68410    0  108   12.87195   12.68410  1.46%     -    0s
+H    0     0                      12.8281024   12.68410  1.12%     -    0s
+H    0     0                      12.8246836   12.68410  1.10%     -    0s
+     0     0   12.69199    0  109   12.82468   12.69199  1.03%     -    0s
+H    0     0                      12.8093985   12.69425  0.90%     -    0s
+     0     0   12.69425    0  111   12.80940   12.69425  0.90%     -    0s
+
+Cutting planes:
+  Gomory: 14
+  Cover: 2
+  Implied bound: 11
+  MIR: 28
+  Flow cover: 35
+  RLT: 10
+  Relax-and-lift: 1
+
+Explored 1 nodes (2072 simplex iterations) in 0.28 seconds (0.18 work units)
+Thread count was 12 (of 12 available processors)
+
+Solution count 8: 12.8094 12.8247 12.8281 ... 15.6793
+
+Optimal solution found (tolerance 1.00e-02)
+Best objective 1.280939853656e+01, best bound 1.269424980257e+01, gap 0.8989%
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 17:20:51 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 7794 rows, 4046 columns and 18755 nonzeros
+Model fingerprint: 0x0f01b9d3
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 1451 rows and 869 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.02 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+
+Computing Irreducible Inconsistent Subsystem (IIS)...
+
+           Constraints          |            Bounds           |  Runtime
+      Min       Max     Guess   |   Min       Max     Guess   |
+--------------------------------------------------------------------------
+        0      8083         -         0      3179         -           0s
+Numerical troubles encountered during IIS computation
+        3         3         3         0         0         0           0s
+
+IIS computed: 3 constraints, 0 bounds
+IIS runtime: 0.01 seconds (0.00 work units)
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 17:21:46 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 7216 rows, 4046 columns and 18177 nonzeros
+Model fingerprint: 0x90b5514b
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 873 rows and 869 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+
+Computing Irreducible Inconsistent Subsystem (IIS)...
+
+           Constraints          |            Bounds           |  Runtime
+      Min       Max     Guess   |   Min       Max     Guess   |
+--------------------------------------------------------------------------
+        0      7505         -         0      3179         -           0s
+Numerical troubles encountered during IIS computation
+        3         3         3         0         0         0           0s
+
+IIS computed: 3 constraints, 0 bounds
+IIS runtime: 0.03 seconds (0.00 work units)
+
+Gurobi 12.0.2 (win64) logging started Thu Mar  5 17:24:51 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Warning: linear constraint 6063 and linear constraint 6931 have the same name "HSS_energy_1"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 8372 rows, 4046 columns and 20776 nonzeros
+Model fingerprint: 0x809e5b06
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 2023 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 7e+01]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 1453 rows and 869 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+
+Computing Irreducible Inconsistent Subsystem (IIS)...
+
+           Constraints          |            Bounds           |  Runtime
+      Min       Max     Guess   |   Min       Max     Guess   |
+--------------------------------------------------------------------------
+        0      8661         -         0      3179         -           0s
+Numerical troubles encountered during IIS computation
+        3         3         3         0         0         0           0s
+
+IIS computed: 3 constraints, 0 bounds
+IIS runtime: 0.03 seconds (0.00 work units)
+
+Gurobi 12.0.2 (win64) logging started Fri Mar  6 10:34:17 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 5771 rows, 3179 columns and 14714 nonzeros
+Model fingerprint: 0x13c5eaf2
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 1156 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [7e-01, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 1e+00]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 3747 rows and 1157 columns
+Presolve time: 0.10s
+Presolved: 2024 rows, 2022 columns, 4623 nonzeros
+Variable types: 867 continuous, 1155 integer (1155 binary)
+Found heuristic solution: objective 3.2651807
+Found heuristic solution: objective -0.0000000
+
+Explored 0 nodes (0 simplex iterations) in 0.14 seconds (0.05 work units)
+Thread count was 12 (of 12 available processors)
+
+Solution count 2: -1.70985e-10 3.26518 
+
+Optimal solution found (tolerance 1.00e-02)
+Best objective -1.709850039333e-10, best bound -1.709850039333e-10, gap 0.0000%
+
+Gurobi 12.0.2 (win64) logging started Fri Mar  6 10:40:43 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 6060 rows, 3179 columns and 15292 nonzeros
+Model fingerprint: 0xa4fd3e6b
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 1156 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 1e+00]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 6060 rows and 3179 columns
+Presolve time: 0.01s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.01 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 1: 16.9697 
+
+Optimal solution found (tolerance 1.00e-02)
+Best objective 1.696965788676e+01, best bound 1.696965788626e+01, gap 0.0000%
+
+Gurobi 12.0.2 (win64) logging started Fri Mar  6 10:41:35 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 6060 rows, 3179 columns and 15292 nonzeros
+Model fingerprint: 0xc9675d95
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 1156 continuous, 2023 integer (2023 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 1e+00]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 6017 rows and 3138 columns
+Presolve time: 0.01s
+Presolved: 43 rows, 41 columns, 95 nonzeros
+Variable types: 18 continuous, 23 integer (23 binary)
+Found heuristic solution: objective 16.5842749
+
+Explored 0 nodes (0 simplex iterations) in 0.02 seconds (0.01 work units)
+Thread count was 12 (of 12 available processors)
+
+Solution count 1: 16.5843 
+
+Optimal solution found (tolerance 1.00e-02)
+Best objective 1.658427488215e+01, best bound 1.654428488171e+01, gap 0.2411%
+
+Gurobi 12.0.2 (win64) logging started Fri Mar  6 10:48:21 2026
+
+Set parameter LogFile to value "./logs/gurobi.log"
+Gurobi Optimizer version 12.0.2 build v12.0.2rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+
+Non-default parameters:
+TimeLimit  300
+MIPGap  0.01
+Heuristics  0.5
+LogToConsole  0
+
+Academic license 2716289 - for non-commercial use only - registered to fa___@unical.it
+Optimize a model with 5196 rows, 2890 columns and 11546 nonzeros
+Model fingerprint: 0x37501c9f
+Model has 289 simple general constraints
+  289 PWL
+Variable types: 1156 continuous, 1734 integer (1734 binary)
+Coefficient statistics:
+  Matrix range     [8e-02, 5e+01]
+  Objective range  [4e-03, 2e+02]
+  Bounds range     [1e+00, 1e+03]
+  RHS range        [3e-01, 1e+00]
+  PWLCon x range   [0e+00, 0e+00]
+  PWLCon y range   [0e+00, 0e+00]
+Presolve removed 5145 rows and 2851 columns
+Presolve time: 0.01s
+Presolved: 51 rows, 39 columns, 115 nonzeros
+Variable types: 18 continuous, 21 integer (21 binary)
+Found heuristic solution: objective 16.5911756
+
+Explored 0 nodes (0 simplex iterations) in 0.02 seconds (0.01 work units)
+Thread count was 12 (of 12 available processors)
+
+Solution count 1: 16.5912 
+
+Optimal solution found (tolerance 1.00e-02)
+Best objective 1.659117563215e+01, best bound 1.658221038168e+01, gap 0.0540%

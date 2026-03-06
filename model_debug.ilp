@@ -1,9 +1,13 @@
 \ Model SHGSO_copy
 \ LP format - for model browsing. Use MPS format to capture full model detail.
-\ Signature: 0xd8241660b71cfcdd
+\ Signature: 0x3bd25d26f412b02b
 Minimize
  
 Subject To
- HSS_charge_0: E_hss_ch[0] <= -174
+ tank_h2_discharge_0: E_hss_dc[0] - 0.28 H2_blend[0] = 0
+ HSS_discharge_0: E_hss_dc[0] <= 0
+ blend_limit_0: H2_blend[0] >= 1.17
 Bounds
+ E_hss_dc[0] free
+ H2_blend[0] free
 End

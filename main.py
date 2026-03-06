@@ -115,33 +115,26 @@ if __name__ == '__main__':
     # --- Vettori TOT dali sol (già aggregati correttamente) ---
     p_imp_values        = np.ravel(sol['P_imp'])[:problem.inst.T_steps+1]
     p_el_out_values     = np.ravel(sol['P_el_out'])[:problem.inst.T_steps+1]
-    e_hss_values        = np.ravel(sol.get('E_hss', np.zeros(problem.inst.T_steps+1)))[:problem.inst.T_steps+1]
     p_el_in_values      = np.ravel(sol['P_el_in'])[:problem.inst.T_steps+1]
     p_el_in_tot_values= np.ravel(sol['P_el_in_tot'])[:problem.inst.T_steps+1]
-    e_hss_ch_values     = np.ravel(sol['E_hss_ch'])[:problem.inst.T_steps+1]
-    e_hss_dc_values     = np.ravel(sol['E_hss_dc'])[:problem.inst.T_steps+1]
     h2_blend_values     = np.ravel(sol['H2_blend'])[:problem.inst.T_steps+1]
     
     S_warm = sol.get("s_warm", np.zeros((problem.inst.T_steps+1)))
     y_warm_up = sol.get("y_warm", np.zeros((problem.inst.T_steps+1)))
-    y_stdby   = sol.get("y_stby",   np.zeros((problem.inst.T_steps+1)))
     y_run    = sol.get("y_run",     np.zeros((problem.inst.T_steps+1)))
     
     E_h2_start = inst_shg.cap_h2_max * inst_shg.p_ini_st_h2/inst_shg.p_max_st_h2
 
     base_cols = {
         "Hour": np.arange(1, problem.inst.T_steps + 2),
+        "P_PV": inst_shg.P_pv.tolist(),
         "P_imp": p_imp_values,
-        "E_hss": e_hss_values,
         "P_el_in": p_el_in_values,
         "P_el_in_tot": p_el_in_tot_values,
         "P_el_out": p_el_out_values,
-        "E_hss_ch": e_hss_ch_values,
-        "E_hss_dc": e_hss_dc_values,
         "H2_blend": h2_blend_values,
         "S_warm": S_warm,
         "y_warm_up": y_warm_up,
-        "y_stdby": y_stdby,
         "y_run": y_run
     }
 
