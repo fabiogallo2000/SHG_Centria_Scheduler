@@ -890,8 +890,6 @@
 
     "Static Data": {
 
-        "p_ini_st_h2": 30,
-
         "H2_prod_ini_perc":0,
 
         "T_amb_C": 25,

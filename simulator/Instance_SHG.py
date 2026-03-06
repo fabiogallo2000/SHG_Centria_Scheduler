@@ -25,20 +25,6 @@ class Instance_SHG():
         self.P_standby = 0.7 #660W la pompa + altri ausiliari interni all'ele
         self.P_aux = 0.3 # Altri ausiliari esterni all'ele
 
-        # Hydrogen storage params
-        self.cap_h2_max = 68.1778#kWh
-        self.p_min_st_h2 = 30 #bar
-
-        self.p_ini_st_h2 = param_dict.get("Static Data", {}).get("p_ini_st_h2", None)
-        if self.p_ini_st_h2 is None:
-            raise ValueError({"status":"Errore", "messaggio":
-                                "p_ini_st_h2 mancante nell'input PLC"})
-        self.p_max_st_h2 = 35 #bar
-        self.E_min_st_h2 =  self.cap_h2_max * self.p_min_st_h2 / self.p_max_st_h2 # kWh, per 30 bar e T=15°C
-        self.loh_min = 0
-        self.loh_max = 1
-        self.small_eps = 0.0001 #param_dict["small_Eps"]
-
 # =========================================== STATIC DATA =====================================================
         self.inst_name = param_dict.get("input", "Centria P2G")
         self.gap = 0.01
