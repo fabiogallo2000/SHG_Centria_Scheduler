@@ -1,0 +1,18 @@
+\ Model SHGSO_copy
+\ LP format - for model browsing. Use MPS format to capture full model detail.
+\ Signature: 0xa42fa2b98d901ec4
+Minimize
+ 
+Subject To
+ power_balance_hydro_1: 0.0166666666666667 P_el_out[1] - 0.059 H2_blend[1]
+   = 0
+ el_out_only_run_ub_1: P_el_out[1] - 39.1608 y_run[1] <= 0
+ init_nonoff: y_warm[0] + y_run[0] = 0
+ no_run_rise_before_warm_1: - y_run[0] + y_run[1] <= 0
+ blend_limit_1: H2_blend[1] >= 1.17
+Bounds
+ P_el_out[1] free
+ H2_blend[1] free
+Binaries
+ y_warm[0] y_run[0] y_run[1]
+End

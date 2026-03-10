@@ -9,9 +9,10 @@ import numpy as np
 import pandas as pd
 import time
 from pathlib import Path
-from datetime import datetime, timedelta
+import datetime
 import os
 
+start_time = time.time()
 # --- BLOCCO MAGICO PER PYINSTALLER ---
 # Questo serve a capire se siamo in un EXE o in uno script normale
 if getattr(sys, 'frozen', False):
@@ -27,30 +28,6 @@ sys.path.append(base_path)
 #from simulator.Photovoltaic import Photovoltaic
 from simulator.Instance_SHG import Instance_SHG
 from solver.shgso import SHGSO
-#from techfem_sim_json_5 import digital_twin
-
-def f_interp(v):
-    # 1. Creiamo l'asse temporale dei dati originali
-    # Se v[0] è a 0s, v[1] a 300s, v[2] a 600s...
-    # x_old saranno i "punti noti": [0, 300, 600, ..., (len(v)-1)*300]
-    x_old = np.arange(len(v)) * 300
-    
-    # 2. Creiamo l'asse temporale di destinazione (ogni secondo della giornata)
-    # x_new sono i punti dove vogliamo calcolare i valori: [0, 1, 2, ..., 86399]
-    x_new = np.arange(86400)
-    
-    # 3. Eseguiamo l'interpolazione lineare
-    # np.interp calcola i valori y corrispondenti a x_new basandosi sulla retta tra i punti di x_old
-    vet_out = np.interp(x_new, x_old, v)
-    
-    return vet_out
-
-# Converte eventuali array NumPy in liste Python serializzabili
-def safe_tolist(data):
-    """Converte numpy array in lista, lascia invariati gli altri tipi"""
-    if isinstance(data, np.ndarray):
-        return data.tolist()
-    return data
 
 if __name__ == '__main__':
     # log_name = "logs/hydromain.log"
@@ -96,174 +73,104 @@ if __name__ == '__main__':
     objective_values = []
 
     try:
-        obj_funct, sol, comp_time = problem.solve(gap= inst_shg.gap,time_limit=inst_shg.time_limit, verbose=True)
-        #exit()
-    except ValueError as e:
-        # Cattura l'eccezione con il messaggio di diagnosi e lo mostra al cliente
-        print("\n========================= ERRORE DI CONFIGURAZIONE =========================")
-        print(f"\nImpossibile trovare una soluzione fattibile. Causa probabile:\n")
-        print(str(e)) # Stampa il messaggio dettagliato dalla nostra funzione di diagnosi
-        print("\n============================================================================")
-        print("\nEsecuzione interrotta. Modificare il file di input e riprovare.")
-        exit()
-    except Exception as e:
-        # Cattura qualsiasi altro errore imprevisto
-        print(f"\nSi è verificato un errore imprevisto: {e}")
-        exit()
+        # 1. Esecuzione del solutore
+        obj_funct, sol, comp_time = problem.solve(
+            gap=inst_shg.gap,
+            time_limit=inst_shg.time_limit, 
+            verbose=True
+        )
+        
+        # Controllo se il solutore ha restituito un errore interno (-1)
+        if obj_funct == -1:
+            raise ValueError("Il solutore Gurobi non è riuscito a trovare una soluzione ottimale (Stato Infeasible o Error).")
 
+    except ValueError as e:
+        # --- GESTIONE ERRORE CONFIGURAZIONE / INFEASIBILITY ---
+        messaggio_errore = str(e)
+        print(f"\n❌ ERRORE DI FATTIBILITÀ: {messaggio_errore}")
+        
+        error_json = {
+            "status": "error",
+            "error_type": "Infeasibility/Configuration",
+            "datetime": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "message": messaggio_errore
+        }
 
     # --- Vettori TOT dali sol (già aggregati correttamente) ---
     p_imp_values        = np.ravel(sol['P_imp'])[:problem.inst.T_steps+1]
+    p_exp_values        = np.ravel(sol['P_exp'])[:problem.inst.T_steps+1]
     p_el_out_values     = np.ravel(sol['P_el_out'])[:problem.inst.T_steps+1]
-    e_hss_values        = np.ravel(sol.get('E_hss', np.zeros(problem.inst.T_steps+1)))[:problem.inst.T_steps+1]
     p_el_in_values      = np.ravel(sol['P_el_in'])[:problem.inst.T_steps+1]
     p_el_in_tot_values= np.ravel(sol['P_el_in_tot'])[:problem.inst.T_steps+1]
-    e_hss_ch_values     = np.ravel(sol['E_hss_ch'])[:problem.inst.T_steps+1]
-    e_hss_dc_values     = np.ravel(sol['E_hss_dc'])[:problem.inst.T_steps+1]
     h2_blend_values     = np.ravel(sol['H2_blend'])[:problem.inst.T_steps+1]
-    
+    h2_unmet_values     = np.ravel(sol['H2_unmet'])[:problem.inst.T_steps+1]
     S_warm = sol.get("s_warm", np.zeros((problem.inst.T_steps+1)))
     y_warm_up = sol.get("y_warm", np.zeros((problem.inst.T_steps+1)))
-    y_stdby   = sol.get("y_stby",   np.zeros((problem.inst.T_steps+1)))
     y_run    = sol.get("y_run",     np.zeros((problem.inst.T_steps+1)))
     
-    E_h2_start = inst_shg.cap_h2_max * inst_shg.p_ini_st_h2/inst_shg.p_max_st_h2
-
     base_cols = {
-        "Hour": np.arange(1, problem.inst.T_steps + 2),
-        "P_imp": p_imp_values,
-        "E_hss": e_hss_values,
-        "P_el_in": p_el_in_values,
-        "P_el_in_tot": p_el_in_tot_values,
-        "P_el_out": p_el_out_values,
-        "E_hss_ch": e_hss_ch_values,
-        "E_hss_dc": e_hss_dc_values,
-        "H2_blend": h2_blend_values,
-        "S_warm": S_warm,
-        "y_warm_up": y_warm_up,
-        "y_stdby": y_stdby,
-        "y_run": y_run
+        "Hour": np.arange(1, problem.inst.T_steps + 2).tolist(),
+        "h2_blend_req": inst_shg.h2_blend[:problem.inst.T_steps+1].tolist(),
+        "PV": inst_shg.p_pv[:problem.inst.T_steps+1].tolist(),
+        "P_imp": p_imp_values.tolist(),
+        "P_exp": p_exp_values.tolist(),
+        "P_el_in": p_el_in_values.tolist(),
+        "P_el_in_tot": p_el_in_tot_values.tolist(),
+        "P_el_out": p_el_out_values.tolist(),
+        "H2_to_blend": h2_blend_values.tolist(),
+        "H2_unmet": h2_unmet_values.tolist(),
+        "S_warm": S_warm.tolist(),
+        "y_warm_up": y_warm_up.tolist(),
+        "y_run": y_run.tolist()
     }
 
     sim_df = pd.DataFrame(base_cols)
     sim_df['Objective Function'] = obj_funct
     all_simulation_results.append(sim_df)
     
-    # # Somma elemento-per-elemento delle potenze (se sono vettori)
-    # P_ele_in_vec = (np.asarray(p_el_in_values))
-
+    # --- SALVATAGGIO IN EXCEL CON XLSXWRITER ---
+    output_excel_path = output_dir / "Risultati_Scheduler.xlsx"
     
-    # # === ON/OFF per elettrolizzatore k e tempo t (1 se warm/run/stdby/s_warm attivo) ===
-    # def as_bool(a):
-    #     a = np.asarray(a)
-    #     return a.astype(float) != 0
-
-    # YW = as_bool(y_warm_up)   # shape: (n_ele, T)
-    # YR = as_bool(y_run)       # shape: (n_ele, T)
-    # YS = as_bool(y_stdby)     # shape: (n_ele, T)
-    # SW = as_bool(S_warm)      # shape: (n_ele, T)
-
-    # y_on_off_t = np.logical_or.reduce([YW, YR, YS, SW]).astype(int)  # (T)
+    h2_out_perc = (p_el_out_values/inst_shg.P_el_max_eq_h2) * 100
     
-    # # #Costrusisci il json di input per il digital twin
-    # input_digital_twin = {
-    #     "Ehss_start": float(E_h2_start),
-    #     "P_ele_in":   safe_tolist(P_ele_in_vec),   # potenza ingresso elettrolizzatore (totale)
-    #     "y_on_off_ele":  y_on_off_t.tolist(),     # stato ON-OFF
-    #     "t_sim": len (P_ele_in_vec),
-    #     "time_resolution": problem.inst.minutes,
-    #     "H2_prod_ini_perc": inst_shg.H2_prod_ini_perc,
-    #     "T_amb": inst_shg.T_amb,
-    #     "z_el": inst_shg.z_el,
-    #     "theta_el": inst_shg.theta_el,
-    #     "P_el_max_eq_h2": inst_shg.P_el_max_eq_h2,
-    #     "enable_plots": inst_shg.grafici_finali,
-    #     'output_folder' : str(output_dir)
-    # }
+    def as_bool(a):
+        a = np.asarray(a)
+        return a.astype(float) != 0
 
-    # # --- 6. ESECUZIONE DIGITAL TWIN ---
-    # output_finale, p_ausiliari_tot = digital_twin(input_digital_twin)
+    YW = as_bool(y_warm_up)   # shape: (T)
+    YR = as_bool(y_run)       # shape: (T)
+    SW = as_bool(S_warm)      # shape: (T)
 
-    # # --- 7. POST-PROCESSING RETE E FORMATTAZIONE (Stile API) ---
-    # new_p_pv = f_interp(inst_shg.P_pv)
-    # new_p_d = f_interp(inst_shg.P_d)
+    y_on_off_t = np.logical_or.reduce([YW, YR, SW]).astype(int)  # (T)
     
-    # # Recupero dati grezzi dal DT per i calcoli
-    # arr_fc = np.array(output_finale.get("fuel_cell", {}).get("potenza_erogata_kW", []), dtype=float)
+    end_time = time.time()
+    elapsed_time = end_time - start_time
     
-    # # Somma verticale potenze elettrolizzatori
-    # profili = [el["potenza_assorbita_kw"] for el in output_finale["elettrolizzatori"]]
-    # matrice_ele = np.array(profili, dtype=float)
-    # arr_ele_tot = np.sum(matrice_ele, axis=0)
+    output_json = {
+        "status": "ok",
+        "datetime": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "computation time": float(elapsed_time),
+        "sampling_time": int(inst_shg.minutes),
+        "Funzione Obiettivo": float(obj_funct),
+        "Elettrolizzatore":{
+            "Stato_Ely": y_on_off_t.tolist(),
+            "h2_out_perc": h2_out_perc.tolist(),
+        },
+        "P_imp_grid": p_imp_values.tolist(),
+        "P_exp_grid":p_exp_values.tolist()
+        }
     
-    # # Debug delle dimensioni
-    # # debug_vars = {
-    # # "arr_fc": arr_fc,
-    # # "eta_inv": inst_shg.eta_inv,
-    # # "new_p_pv": new_p_pv,
-    # # "p_ausiliari_tot": p_ausiliari_tot,
-    # # "new_p_d": new_p_d,
-    # # "arr_ele_tot": arr_ele_tot
-    # # }
-
-    # # for nome, var in debug_vars.items():
-    # #     shape = getattr(var, 'shape', 'N/A (not an array/series)')
-    # #     print(f"{nome}: shape = {shape}")
-    #     # Delta > 0 (Surplus), Delta < 0 (Deficit)
-    # Delta = arr_fc * inst_shg.eta_inv + new_p_pv - p_ausiliari_tot - new_p_d - arr_ele_tot
-
-    # P_exp_fin = np.zeros(len(Delta))
-    # P_imp_fin = np.zeros(len(Delta))
+    try:
+        # Usa xlsxwriter come motore invece di openpyxl
+        sim_df.to_excel(output_excel_path, engine='xlsxwriter', index=False)
+        print(f"\n✅ Excel creato con xlsxwriter: {output_excel_path}")
+    except Exception as e:
+        print(f"\n❌ Errore: {e}")
     
-    # for t in range(len(Delta)):
-    #     if Delta[t] >= 0:
-    #         P_exp_fin[t] = Delta[t]
-    #     if Delta[t] < 0:
-    #         P_imp_fin[t] = -Delta[t]
-
-    # # --- 8. CREAZIONE DIZIONARIO "PIATTO" (Come API) ---
-    
-    # # Estrazione liste
-    # hss_pressure = safe_tolist(output_finale.get("serbatoio", {}).get("pressione_serbatoio_h2", []))
-
-    # potenze_previste = {}
-    # potenze_previste["P_fc_out"] = safe_tolist(arr_fc * 100 / inst_shg.P_fc_max) # percentuale
-    # potenze_previste["p_hss"] = hss_pressure
-
-    # # Ciclo per appiattire gli elettrolizzatori (P_ely_in_1, P_ely_in_2...)
-    # if "elettrolizzatori" in output_finale:
-    #     for i, el in enumerate(output_finale["elettrolizzatori"]):
-            
-    #         # 2. Gestione Stato Logico (Nuova aggiunta)
-    #         key_stato = f"Stato_Ely_{i+1}"
-    #         # Recupera la lista degli stati (0, 1, 2, 3)
-    #         potenze_previste[key_stato] = el.get("stato_logico", [])
-            
-    #         key_h2_perc = f"h2_out_perc_{i+1}"
-    #         potenze_previste[key_h2_perc] = el.get("carico_h2_percentuale", [])
-
-    # # Aggiunta vettori rete
-    # potenze_previste["P_imp_grid"] = np.round(P_imp_fin, 3).tolist()
-    # potenze_previste["P_exp_grid"] = np.round(P_exp_fin, 3).tolist()
-
-    # end_time = time.time()
-    # elapsed_time = end_time - start_time
-    
-    # # Struttura finale identica alla response FastAPI
-    # json_output_api_style = {
-    #     "status": "Ok",
-    #     "datetime": datetime.now().isoformat(),
-    #     "computation time": elapsed_time,
-    #     "sampling time": 5,
-    #     "Funzione Obiettivo": obj_funct,
-    #     "Risultati previsti": potenze_previste
-    # }
-
-    # # --- 9. SALVATAGGIO JSON FINALE ---
-    # output_filename = output_dir / "output_simulazione.json"
-    
-    # with open(output_filename, 'w') as f:
-    #     json.dump(json_output_api_style, f, indent=2)
-    
-    # print(f" Tempo di simulazione: {elapsed_time:.2f} secondi")
-    # #print(f" File salvati in: {output_dir}")
+    # --- 9. SALVATAGGIO JSON FINALE ---
+    output_filename = output_dir / "output_simulazione.json"
+    try:
+        with open(output_filename, 'w') as f:
+            json.dump(output_json, f, indent=2)
+    except Exception as e:
+        print(f"\n❌ Errore: {e}")
