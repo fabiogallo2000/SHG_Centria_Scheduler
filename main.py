@@ -102,10 +102,12 @@ if __name__ == '__main__':
     p_el_out_values     = np.ravel(sol['P_el_out'])[:problem.inst.T_steps+1]
     p_el_in_values      = np.ravel(sol['P_el_in'])[:problem.inst.T_steps+1]
     p_el_in_tot_values= np.ravel(sol['P_el_in_tot'])[:problem.inst.T_steps+1]
+    e_hss_values        = np.ravel(sol.get('E_hss', np.zeros(problem.inst.T_steps+1)))[:problem.inst.T_steps+1]
+    e_hss_dc_values        = np.ravel(sol.get('E_hss_dc', np.zeros(problem.inst.T_steps+1)))[:problem.inst.T_steps+1]
+    e_hss_ch_values        = np.ravel(sol.get('E_hss_ch', np.zeros(problem.inst.T_steps+1)))[:problem.inst.T_steps+1]
     h2_blend_values     = np.ravel(sol['H2_blend'])[:problem.inst.T_steps+1]
     h2_unmet_values     = np.ravel(sol['H2_unmet'])[:problem.inst.T_steps+1]
-    S_warm = sol.get("s_warm", np.zeros((problem.inst.T_steps+1)))
-    y_warm_up = sol.get("y_warm", np.zeros((problem.inst.T_steps+1)))
+    S_start = sol.get("s_start", np.zeros((problem.inst.T_steps+1)))
     y_run    = sol.get("y_run",     np.zeros((problem.inst.T_steps+1)))
     
     base_cols = {
@@ -114,13 +116,15 @@ if __name__ == '__main__':
         "PV": inst_shg.p_pv[:problem.inst.T_steps+1].tolist(),
         "P_imp": p_imp_values.tolist(),
         "P_exp": p_exp_values.tolist(),
+        "E_hss": e_hss_values.tolist(),
+        "E_hss_ch": e_hss_ch_values.tolist(),
+        "E_hss_dis": e_hss_dc_values.tolist(),
         "P_el_in": p_el_in_values.tolist(),
         "P_el_in_tot": p_el_in_tot_values.tolist(),
         "P_el_out": p_el_out_values.tolist(),
         "H2_to_blend": h2_blend_values.tolist(),
         "H2_unmet": h2_unmet_values.tolist(),
-        "S_warm": S_warm.tolist(),
-        "y_warm_up": y_warm_up.tolist(),
+        "S_start": S_start.tolist(),
         "y_run": y_run.tolist()
     }
 
@@ -137,11 +141,10 @@ if __name__ == '__main__':
         a = np.asarray(a)
         return a.astype(float) != 0
 
-    YW = as_bool(y_warm_up)   # shape: (T)
     YR = as_bool(y_run)       # shape: (T)
-    SW = as_bool(S_warm)      # shape: (T)
+    SW = as_bool(S_start)      # shape: (T)
 
-    y_on_off_t = np.logical_or.reduce([YW, YR, SW]).astype(int)  # (T)
+    y_on_off_t = np.logical_or.reduce([YR, SW]).astype(int)  # (T)
     
     end_time = time.time()
     elapsed_time = end_time - start_time

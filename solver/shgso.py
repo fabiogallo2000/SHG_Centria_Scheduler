@@ -61,6 +61,7 @@ class SHGSO():
             el_pts_out_Y.append(val_out_Y)
         
         self.max_charge = self.inst.P_el_max * self.inst.delta_t
+        self.max_discharge = np.max(self.inst.h2_blend) * self.inst.HHV * self.inst.delta_t
         # ============================================== CREAZIONE MODELLO Gurobi =====================================================
         
         self.model = gp.Model(self.problem_name)
@@ -91,12 +92,19 @@ class SHGSO():
 
         # ---- Stati elettrolizzatore (mutuamente esclusivi) ----
         self.y_off  = self.model.addVars(self.hours, vtype=GRB.BINARY, name="y_off")
-        self.y_warm = self.model.addVars(self.hours, vtype=GRB.BINARY, name="y_warm")
-        self.s_warm = self.model.addVars(self.hours, vtype=GRB.BINARY, name="s_warm")
+        self.s_start = self.model.addVars(self.hours, vtype=GRB.BINARY, name="s_start")
         self.y_run  = self.model.addVars(self.hours, vtype=GRB.BINARY, name="y_run")   # PWA attiva
-        self.y_prod = self.model.addVars(self.hours, vtype=GRB.BINARY, name="y_prod")  # = y_warm + y_run. E' il delta dell'elettrolizzatore
         
         self.H2_unmet = self.model.addVars(self.hours, lb=0, vtype=GRB.CONTINUOUS, name='H2_unmet')
+
+        # E stored in hydrogen tank
+        self.E_hss = self.model.addVars(self.hours, lb= 0, ub= self.inst.cap_h2_max, vtype= GRB.CONTINUOUS, name='E_hss')
+
+        # E hss charge
+        self.E_hss_ch = self.model.addVars(self.hours, lb= 0, ub= self.max_charge, vtype= GRB.CONTINUOUS,name='E_hss_ch')
+
+        # E hss discharge
+        self.E_hss_dc = self.model.addVars(self.hours, lb= 0, ub= self.max_discharge, vtype= GRB.CONTINUOUS,name='E_hss_dc')
         
         # OBJECTIVE FUNCTION
         obj_funct = 0
@@ -114,12 +122,9 @@ class SHGSO():
         
         rem_exp_tot = gp.quicksum(self.inst.c_sell[t] * self.P_exp[t] for t in self.hours) * dt
         
-        penalty_factor = 50
-        diff_bu = gp.quicksum((self.H2_blend [t]- self.inst.h2_blend [t]) * self.inst.HHV * penalty_factor for t in self.hours)
-        
         penalty_unmet = gp.quicksum(self.H2_unmet[t] * 10000 for t in self.hours)
 
-        obj_funct = opex_ely_tot + cost_imp_tot - rem_exp_tot + penalty_unmet + diff_bu
+        obj_funct = opex_ely_tot + cost_imp_tot - rem_exp_tot + penalty_unmet
         
         self.model.setObjective(obj_funct, GRB.MINIMIZE)
 
@@ -129,19 +134,38 @@ class SHGSO():
         
         # Bilancio AC: usiamo addConstrs (generatore) invece del ciclo for esplicito
         self.model.addConstrs((
-            self.P_el_in [t] + self.inst.P_standby * (1-self.y_off [t]) + self.inst.P_aux * self.y_prod[t] + self.P_exp [t]
-            == self.P_imp[t] + self.inst.p_pv [t]
+            self.P_el_in [t] + (self.inst.P_standby + self.inst.P_aux) * (self.y_run [t]) + self.P_exp [t]
+            == self.P_imp[t] + self.inst.p_pv [t] 
             for t in self.hours),
             name="power_balance_ac"
         )
         
-        # Hydroline balance con dt variabile
+        # Hydroline balance
         for t in self.hours:
+            # 1. Tutto l'idrogeno prodotto dall'elettrolizzatore va nel flusso di CARICA del serbatoio
             self.model.addConstr(
-                self.P_el_out[t] * dt == self.H2_blend [t] * dt * self.inst.HHV,
-                f"power_balance_hydro_{t}"
+                self.E_hss_ch[t] == self.P_el_out[t] * dt,
+                f"h2_to_tank_{t}"
             )
 
+            # 2. Tutto l'idrogeno richiesto dalla Blending Unit proviene dal flusso di SCARICA del serbatoio
+            self.model.addConstr(
+                self.E_hss_dc[t] == self.H2_blend[t] * self.inst.HHV * dt,
+                f"h2_from_tank_{t}"
+            )
+
+# ======================================= LOGICA TEMPO PERSO PER WARMUP ====================================================================
+        # Rapporto tempo perso: 5 min / 15 min = 0.333
+        loss_factor = self.inst.t_warm_up / self.inst.minutes
+
+        for t in self.hours:
+            # Se s_start=1 (accensione), la produzione max è ridotta del 33%
+            # Se s_start=0 e y_run=1, la produzione può arrivare al 100%
+            self.model.addConstr(
+                self.P_el_out[t] <= self.inst.P_el_max_eq_h2 * (self.y_run[t] - loss_factor * self.s_start[t]),
+                f"limit_h2_production_{t}"
+            )
+            
 # ======================================= APPLICAZIONE DELLA PWA CON GUROBI PER ELE E FC ====================================================================
 
         for t in self.hours:
@@ -164,88 +188,18 @@ class SHGSO():
             # Vincoli di sicurezza per spegnere l'input se y_run=0 (ridondante ma utile)
             self.model.addConstr(self.P_el_in[t] <= self.inst.P_el_max * self.y_run[t], f"safety_off_in_{t}")
                 
-# =================================== DINAMICA DELL' ELETTROLIZZATORE =============================================
-
+        # =================================== DINAMICA DELL' ELETTROLIZZATORE =============================================
+        
         for t in self.hours:
-    
-            #Stati di funzionamento dell'elettrolizzatore (esattamente uno stato per volta)
-            self.model.addConstr(self.y_off[t] + self.y_warm[t] + self.y_run[t] == 1, f"one_state_{t}")
+            # 1. VINCOLI DI STATO (Mutua esclusione e stato di produzione)
+            # Esattamente uno stato attivo tra OFF, WARM, RUN
+            self.model.addConstr(self.y_off[t] + self.y_run[t] == 1, f"one_state_{t}")
 
-            # produzione = warm + run
-            self.model.addConstr(self.y_prod[t] == self.y_warm[t] + self.y_run[t], f"yprod_{t}")
-
-            if t == 0 and self.inst.H2_prod_ini_perc == 0:
-                # Inizializza spento (OFF)
-                self.model.addConstr(self.y_off[t] == 1, "init_off")
-                self.model.addConstr(self.y_warm[t] + self.y_run[t] == 0, "init_nonoff")
-            elif t == 0 and self.inst.H2_prod_ini_perc > 0:
-                self.model.addConstr(self.y_off[t] + self.y_warm [t] == 0, "init_off")
-                self.model.addConstr(self.y_run[t] == 1, "init_nonoff")
-            else:
-                # WARMUP solo se si avvia la produzione partendo da OFF
-                # y_warm[t] = 1 se y_prod[t]=1 e y_off[t-1]=1
-                self.model.addConstr(self.y_warm[t] <= self.y_prod[t], f"warm_ub1_{t}")
-
-            if t == 0:
-                self.model.addConstr(self.s_warm[t] == self.y_warm[t], f"s_warm_init_{t}")
-            else:
-                # salita di y_warm: 0->1
-                self.model.addConstr(self.s_warm[t] >= self.y_warm[t] - self.y_warm[t-1] - self.y_run[t-1],  f"s_warm_lb_{t}")
-                self.model.addConstr(self.s_warm[t] <= self.y_warm[t],                       f"s_warm_ub1_{t}")
-                self.model.addConstr(self.s_warm[t] <= 1 - self.y_warm[t-1],                 f"s_warm_ub2_{t}")
-                # Consenti start solo se eri OFF:
-                self.model.addConstr(self.s_warm[t] <= self.y_off[t-1], f"s_warm_requires_off_{t}")
-
-            # =========================================================
-            # VINCOLO FISICO: DIVIETO SALTO OFF -> RUN
-            # =========================================================
+            # 2. LOGICA s_start (Segnale di accensione da freddo)
+            # s_start può essere 1 solo se passiamo da OFF a RUN
             if t > 0:
-                # Se allo step precedente ero OFF (y_off=1),
-                # allo step attuale NON posso essere in RUN (y_run deve essere 0).
-                # Posso andare in WARM o restare OFF.
-                
-                # Matematica: y_run[t] + y_off[t-1] <= 1
-                # Se y_off[t-1] è 1, allora y_run[t] è costretto a 0.
-                # Se y_off[t-1] è 0 (ero Stby/Warm/Run), allora y_run[t] può essere 1.
-                
-                self.model.addConstr(
-                    self.y_run[t] + self.y_off[t-1] <= 1,
-                    f"block_direct_off_to_run_{t}"
-                )
-
-        L = self.L_warm
-
-        for t in self.hours:
-
-            #Il warming deve durare esattamente L step
-            rhs = gp.quicksum(self.s_warm[t-j] for j in range(L) if t-j >= 0)
-            self.model.addConstr(self.y_warm[t] <= rhs,         f"warm_win_ub_{t}")
-            self.model.addConstr(self.y_warm[t] >= rhs,         f"warm_win_lb_{t}")
-
-            # Dopo il warm, devi entrare in RUN immediatamente
-            if t >= self.L_warm:
-                self.model.addConstr(self.y_run[t] >= self.s_warm[t - self.L_warm],
-                                    f"run_immediately_after_warm_{t}")
-                # Vieta OFF/STBY nello stesso step:
-                self.model.addConstr(self.y_off[t]  <= 1 - self.s_warm[t - self.L_warm], f"no_off_after_warm_{t}")
-
-            # Vieta OFF→RUN senza warm-up concluso L step prima
-            if t == 0:
-                # Già inizializzi OFF, ok
-                continue
-            if t < L:
-                # prima che sia trascorso L, non puoi accendere RUN se eri OFF al passo precedente
-                self.model.addConstr(
-                    self.y_run[t] <= self.y_run[t-1],
-                    f"no_run_rise_before_warm_{t}"
-                )
-            else:
-                # puoi aumentare RUN al tempo t solo se c'è s_warm al tempo t-L
-                # y_run[t] <= y_run[t-1] + s_warm[t-L]
-                self.model.addConstr(
-                    self.y_run[t] <= self.y_run[t-1] + self.s_warm[t-L],
-                    f"run_rise_from_run_or_warm_{t}"
-                )
+                self.model.addConstr(self.s_start[t] >= self.y_run[t] - self.y_run[t-1], f"start_trigger_{t}")
+                self.model.addConstr(self.s_start[t] <= self.y_run[t], f"start_bound_{t}")
                 
 #============================================= VINCOLI PER SCAMBI CON LA RETE ========================================================================
         for t in self.hours:
@@ -268,20 +222,59 @@ class SHGSO():
                     f"Delta_EXP_IMP_{t}"
                     )
             
+#============================================= VINCOLI SUL SERBATOIO A IDROGENO ========================================================================
+
+        for t in self.hours:
+            if t == 0:
+                self.model.addConstr(
+                        self.E_hss[t] ==
+                        self.inst.cap_h2_max * self.inst.p_ini_st_h2/self.inst.p_max_st_h2,
+                        f"HSS_energy_start_{t}"
+                        )
+                self.model.addConstr( 
+                    self.E_hss_ch[t] <= self.inst.cap_h2_max-(self.inst.cap_h2_max*self.inst.p_ini_st_h2/self.inst.p_max_st_h2),
+                    f"HSS_charge_{t}"
+                )
+                self.model.addConstr(
+                    self.E_hss_dc[t] <= self.inst.cap_h2_max*self.inst.p_ini_st_h2/self.inst.p_max_st_h2,
+                    f"HSS_discharge_{t}"
+                )
+            else:
+                self.model.addConstr(
+                        self.E_hss[t] == self.E_hss[t-1] + self.E_hss_ch[t-1] - self.E_hss_dc[t-1],
+                        f"HSS_energy_{t}"
+                        )
+                self.model.addConstr(
+                    self.E_hss_ch[t] <= (self.inst.cap_h2_max*self.inst.loh_max) - self.E_hss[t],
+                    f"HSS_charge_{t}"
+                )
+                self.model.addConstr(
+                    self.E_hss_dc[t] <= self.E_hss[t] - (self.inst.cap_h2_max*self.inst.loh_min),
+                    f"HSS_discharge_{t}"
+                )
+
+            self.model.addConstr(
+                    self.E_hss[t] <= self.inst.cap_h2_max*self.inst.loh_max,
+                    f"HSS_max_capacity_{t}"
+                )
+            self.model.addConstr(
+                    self.E_hss[t] >= self.inst.cap_h2_max*self.inst.loh_min,
+                    f"HSS_min_capacity_{t}"
+                )
+            
+#============================================= VINCOLO AGGIUNTIVO CAPACITA' FINALE SERBATOIO A IDROGENO ========================================================================
+        if self.inst.control:
+            self.model.addConstr(
+                self.E_hss[len(self.hours)-1] ==
+                            self.inst.cap_h2_max * self.inst.loh_final,
+                            f"HSS_energy_end"
+                            )            
 #============================================= VINCOLO IDROGENO PER BLENDING UNIT ========================================================================
         for t in self.hours:
             # La somma di quello che produco + quello che "mi manca" deve coprire la domanda
             self.model.addConstr(
-                self.H2_blend[t] + self.H2_unmet[t] >= self.inst.h2_blend[t],
+                self.H2_blend[t] + self.H2_unmet[t] == self.inst.h2_blend[t],
                 f"soft_blend_limit_{t}"
-            )
-
-            # VINCOLO CRUCIALE: La mancata fornitura può essere > 0 SOLO se non siamo in RUN
-            # In altre parole, se l'elettrolizzatore è in RUN, H2_unmet deve essere 0.
-            # Usiamo un Big-M (la domanda stessa è un ottimo Big-M)
-            self.model.addConstr(
-                self.H2_unmet[t] <= self.inst.h2_blend[t] * (1 - self.y_run[t]),
-                f"unmet_only_during_warm_or_off_{t}"
             )
 
         self.model.update()
@@ -373,11 +366,13 @@ class SHGSO():
             "P_el_in_tot":  np.zeros(T),  # Elettrolizzzatore + AUX
             "P_el_out":     np.zeros(T),  # H2 out (somma k)
             "y_off":          np.zeros(T),
-            "y_warm":         np.zeros(T),
             "y_run":          np.zeros(T),
-            "s_warm":         np.zeros(T),
+            "s_start":         np.zeros(T),
             "H2_blend":       np.zeros(T),
-            "H2_unmet":       np.zeros(T)
+            "H2_unmet":       np.zeros(T),
+            "E_hss":        np.zeros(T),
+            "E_hss_ch":        np.zeros(T),
+            "E_hss_dc":        np.zeros(T),
         }
 
         # 3. Estrazione Valori (Solo se c'è una soluzione disponibile)
@@ -394,10 +389,10 @@ class SHGSO():
                 try: self.sol["P_exp"][t]    = self.P_exp[t].X
                 except: pass
 
-                try: self.sol["P_el_in"][t]  = self.P_el_in[t].X + self.inst.P_standby
+                try: self.sol["P_el_in"][t]  = self.P_el_in[t].X + self.inst.P_standby * (1-self.y_off[t].X)
                 except: pass
                 
-                try: self.sol["P_el_in_tot"][t]  = self.P_el_in[t].X + self.inst.P_aux * self.y_prod[t].X + self.inst.P_standby
+                try: self.sol["P_el_in_tot"][t]  = self.P_el_in[t].X + self.inst.P_aux * self.y_prod[t].X + self.inst.P_standby *(1-self.y_off[t].X)
                 except: pass
                 
                 try: self.sol["P_el_out"][t] = self.P_el_out[t].X
@@ -412,11 +407,15 @@ class SHGSO():
                 # --- B. Variabili Binare (Stati) ---
                 try: self.sol["y_off"][t]    = self.y_off[t].X
                 except: pass
-                try: self.sol["y_warm"][t]   = self.y_warm[t].X
-                except: pass
                 try: self.sol["y_run"][t]    = self.y_run[t].X
                 except: pass
-                try: self.sol["s_warm"][t]   = self.s_warm[t].X
+                try: self.sol["s_start"][t]   = self.s_start[t].X
+                except: pass
+                try: self.sol["E_hss"][t]    = self.E_hss[t].X
+                except: pass
+                try: self.sol["E_hss_ch"][t]    = self.E_hss_ch[t].X
+                except: pass
+                try: self.sol["E_hss_dc"][t]    = self.E_hss_dc[t].X
                 except: pass
                 
 
