@@ -5,29 +5,36 @@ class Instance_SHG():
     def __init__(self, param_dict):
         
         self.grafici_finali = param_dict.get("User inputs", {}).get("grafici finali", False)
-        
-# ==================================== PUNTI PER INTERPOLAZIONE =====================================================
-        self.z_el = [0, 1.00]
-        self.theta_el = [0,  0.777]
+
+# ==================================== PUNTI PER INTERPOLAZIONE EFFICIENZA =====================================================
+        self.z_el = [0,0.2, 1, 1.2]
+        self.theta_el = [0, 0.8138,  0.777, 0.5539]
+
+# ==================================== PUNTI PER INTERPOLAZIONE TENSIONE-P_EL_IN =====================================================
+        self.P_el_in_norm = [0, 0.2, 1, 1.2]
+        self.num_cell = 35
+        self.voltage = [1.2*self.num_cell, 1.75*self.num_cell, 1.83*self.num_cell, 2.57*self.num_cell]
+        self.i_nominal = 355 #Ampere
+        self.P_in_nominal = self.voltage[2] * self.i_nominal / 1000.0 #kW
 
 # =========================================== COMPONENT DYNAMICS =====================================================
-        # Electrolizer/fuelcell params
-        self.P_el_min = 0
-        self.P_el_max = 50.4
+        # Electrolizer/fuelcell params 
+        self.P_el_max = self.P_in_nominal * 1.2
+        self.P_el_min = self.P_in_nominal * 0.2
         self.P_el_max_eq_h2 = self.P_el_max * self.theta_el [-1]
         
         # Hydrogen storage params
         self.cap_h2_max = 58.613 #kWh
         self.loh_final = param_dict.get("User inputs", {}).get("LOH_final", 0.5)
 
-        self.p_ini_st_h2 = param_dict.get("Static Data", {}).get("p_ini_st_h2", None)
-        if self.p_ini_st_h2 is None:
+        self.p_ini_ely_out = param_dict.get("Static Data", {}).get("p_ini_out_ely", None)
+        if self.p_ini_ely_out is None:
             raise ValueError({"status":"Errore", "messaggio":
-                                "p_ini_st_h2 mancante nell'input PLC"})
-        self.HHV = 3.36 #kWh/sM3
+                                "p_ini_out_ely mancante nell'input PLC"})
+        self.HHV = 3.54 #kWh/nM3
         
-        self.p_max_st_h2 = 30
-        self.p_min_st_h2 = 0.5
+        self.p_max_st_h2 = 30 #bar
+        self.p_min_st_h2 = 0.5 #bar
         self.loh_min = self.p_min_st_h2 / self.p_max_st_h2
         self.loh_max = 1
         
@@ -58,6 +65,10 @@ class Instance_SHG():
         self.Cert_Go = param_dict.get("User inputs", {}).get("Cert_Go", 0.075)
         self.Spread = param_dict.get("User inputs", {}).get("Spread", 0.08)
         
+        self.k_1 = param_dict.get("User inputs", {}).get("K_1", 0)
+        self.k_2 = param_dict.get("User inputs", {}).get("K_2", 0)
+        self.k_3 = param_dict.get("User inputs", {}).get("K_3", 0)
+        
 # =========================================== FORECAST DATA =====================================================
         def _to_vec(key, required_len):
             v = param_dict.get("Forecast Data", {}).get(key, None)
@@ -84,3 +95,12 @@ class Instance_SHG():
         self.gap = 0.01
         self.time_limit = 300
         self.H2_prod_ini_perc = self.h2_blend [0]
+        
+        self.Re = self.k_3 * self.H2_prod_ini_perc
+        if self.Re <2300:
+                self.f = 64 / self.Re
+        else:
+                self.f = 0.3164 / (self.Re**0.25)
+        self.caduta_p_in = (self.f*self.k_1 * ((self.H2_prod_ini_perc)**2)/(self.p_ini_ely_out*101325) + self.k_2 * ((self.H2_prod_ini_perc)**2)/(self.p_ini_ely_out*101325)) #Pa
+        self.p_ini_st_h2 = self.p_ini_ely_out - self.caduta_p_in/101325 # bar
+        print (f"Caduta di pressione iniziale: {self.caduta_p_in:.2f} Pa, Pressione iniziale stoccaggio H2: {self.p_ini_st_h2:.2f} Pa")

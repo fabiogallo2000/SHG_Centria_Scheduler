@@ -6,7 +6,10 @@
         "h2_percentage": 20,
         "LOH_final": 0.85,
         "P_max_allaccio_kW": 1000,
-        "grafici finali": true
+        "grafici finali": true,
+        "K_1": 0.2,
+        "K_2": 0.5,
+        "K_3": 0.3
     },
     "Forecast Data": {
         "gas_blend_smc": [
@@ -409,6 +412,6 @@
     "Static Data": {
         "Cert_Go": 0.075,
         "Spread": 0.08,
-        "p_ini_st_h2": 20
+        "p_ini_out_ely": 20
     }
 }

@@ -109,6 +109,29 @@ if __name__ == '__main__':
     h2_unmet_values     = np.ravel(sol['H2_unmet'])[:problem.inst.T_steps+1]
     S_start = sol.get("s_start", np.zeros((problem.inst.T_steps+1)))
     y_run    = sol.get("y_run",     np.zeros((problem.inst.T_steps+1)))
+
+    #Calcolo corrente di alimentazione ELETTROLIZZATORE
+    def calcola_corrente_vettoriale(p_values_vector, p_nominal, num_cell):
+        # Punti di riferimento della curva
+        p_norm_ref = np.array([0, 0.2, 1, 1.2])
+        v_ref = np.array([1.2, 1.75, 2.57, 2.57]) * num_cell
+        
+        # 1. Normalizziamo il vettore degli input (es. da Watt a 0-1.2)
+        p_norm_input = p_values_vector / p_nominal
+        
+        # 2. Interpolazione vettoriale della Tensione
+        # np.interp lavora nativamente su vettori se il primo argomento è un array
+        v_interpolated = np.interp(p_norm_input, p_norm_ref, v_ref)
+        
+        # 3. Calcolo della Corrente: I = P / V
+        # Usiamo np.divide con 'where' per evitare la divisione per zero dove V=0 o P=0
+        i_vector = np.divide(p_values_vector * 1000, v_interpolated, 
+                                out=np.zeros_like(p_values_vector), 
+                                where=v_interpolated > 0)
+
+        return i_vector, v_interpolated
+            
+    i_el_in_values,_ = calcola_corrente_vettoriale(p_el_in_values, inst_shg.P_in_nominal, inst_shg.num_cell)
     
     base_cols = {
         "Hour": np.arange(1, problem.inst.T_steps + 2).tolist(),
@@ -120,6 +143,7 @@ if __name__ == '__main__':
         "E_hss_ch": e_hss_ch_values.tolist(),
         "E_hss_dis": e_hss_dc_values.tolist(),
         "P_el_in": p_el_in_values.tolist(),
+        "I_el_in": i_el_in_values.tolist(),
         "P_el_in_tot": p_el_in_tot_values.tolist(),
         "P_el_out": p_el_out_values.tolist(),
         "H2_to_blend": h2_blend_values.tolist(),
@@ -134,8 +158,6 @@ if __name__ == '__main__':
     
     # --- SALVATAGGIO IN EXCEL CON XLSXWRITER ---
     output_excel_path = output_dir / "Risultati_Scheduler.xlsx"
-    
-    h2_out_perc = (p_el_out_values/inst_shg.P_el_max_eq_h2) * 100
     
     def as_bool(a):
         a = np.asarray(a)
@@ -157,10 +179,8 @@ if __name__ == '__main__':
         "Funzione Obiettivo": float(obj_funct),
         "Elettrolizzatore":{
             "Stato_Ely": y_on_off_t.tolist(),
-            "h2_out_perc": h2_out_perc.tolist(),
-        },
-        "P_imp_grid": p_imp_values.tolist(),
-        "P_exp_grid":p_exp_values.tolist()
+            "I_in_ely": i_el_in_values.tolist()
+        }
         }
     
     try:

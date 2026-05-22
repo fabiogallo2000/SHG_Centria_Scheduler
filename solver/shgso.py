@@ -187,6 +187,9 @@ class SHGSO():
             
             # Vincoli di sicurezza per spegnere l'input se y_run=0 (ridondante ma utile)
             self.model.addConstr(self.P_el_in[t] <= self.inst.P_el_max * self.y_run[t], f"safety_off_in_{t}")
+            
+            # Vincolo che garantisce il rispetto della potenza minima
+            self.model.addConstr(self.P_el_in[t] >= self.inst.P_el_min * self.y_run[t], f"power_min_run_{t}")
                 
         # =================================== DINAMICA DELL' ELETTROLIZZATORE =============================================
         
